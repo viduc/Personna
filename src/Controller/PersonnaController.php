@@ -12,6 +12,7 @@ namespace viduc\personna\src\Controller;
 use viduc\personna\src\Interfaces\Controller\UseCaseInterface;
 use viduc\personna\src\Interfaces\Presenters\PresenterInterface;
 use viduc\personna\src\Interfaces\Requetes\RequeteInterface;
+use viduc\personna\src\Model\PersonnaModel;
 use viduc\personna\src\Reponses\ReponseCreate;
 use viduc\personna\src\Repository\PersonnaRepository;
 
@@ -45,10 +46,14 @@ class PersonnaController implements UseCaseInterface
                 $presenter->presente($reponse);
                 break;
             case 'update':
-
+                $reponse = new ReponseCreate();
+                $reponse->setPersonnaModel($this->repository->update(new PersonnaModel()));
+                $presenter->presente($reponse);
                 break;
             case 'delete':
-
+                $reponse = new ReponseCreate();
+                $this->repository->delete(new PersonnaModel());
+                $presenter->presente($reponse);
                 break;
         }
 

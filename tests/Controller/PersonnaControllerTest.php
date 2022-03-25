@@ -47,6 +47,20 @@ class PersonnaControllerTest extends TestCase
             ReponseInterface::class,
             $this->personna->execute($this->requete, $this->presenter)->reponse
         );
+        /** update */
+        $this->requete->action = 'update';
+        $this->presenter->reinitialize();
+        self::assertInstanceOf(
+            ReponseInterface::class,
+            $this->personna->execute($this->requete, $this->presenter)->reponse
+        );
+        /** delete */
+        $this->requete->action = 'delete';
+        $this->presenter->reinitialize();
+        self::assertInstanceOf(
+            ReponseInterface::class,
+            $this->personna->execute($this->requete, $this->presenter)->reponse
+        );
     }
 }
 
