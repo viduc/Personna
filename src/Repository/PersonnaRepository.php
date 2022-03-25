@@ -9,18 +9,21 @@ declare(strict_types=1);
 
 namespace viduc\personna\src\Repository;
 
+use viduc\personna\src\Interfaces\Ports\PortPersonnaDaoInterface;
 use viduc\personna\src\Model\PersonnaModel;
 
 class PersonnaRepository
 {
-    public function __construct()
-    {
+    private PortPersonnaDaoInterface $port;
 
+    public function __construct(PortPersonnaDaoInterface $port)
+    {
+        $this->port = $port;
     }
 
     final public function create(array $ptions): PersonnaModel
     {
-        return new PersonnaModel();
+        return $this->port->create($ptions);
     }
 
     final public function read(int $id): PersonnaModel

@@ -11,6 +11,7 @@ namespace viduc\personna\tests\Controller;
 
 use PHPUnit\Framework\TestCase;
 use viduc\personna\src\Controller\PersonnaController;
+use viduc\personna\src\Interfaces\Ports\PortPersonnaDaoInterface;
 use viduc\personna\src\Interfaces\Presenters\PresenterInterface;
 use viduc\personna\src\Interfaces\Reponses\ReponseInterface;
 use viduc\personna\src\Interfaces\Requetes\RequeteInterface;
@@ -25,7 +26,7 @@ class PersonnaControllerTest extends TestCase
     final public function setUp(): void
     {
         parent::setUp();
-        $this->personna = new PersonnaController();
+        $this->personna = new PersonnaController(new Port());
         $this->presenter = new Presenter();
         $this->requete = new Requete();
     }
@@ -101,5 +102,29 @@ class Requete implements RequeteInterface
     final public function getParam(string $param): mixed
     {
         return $this->params[$param];
+    }
+}
+
+class Port implements PortPersonnaDaoInterface
+{
+
+    final public function create(array $ptions): PersonnaModel
+    {
+        return new PersonnaModel();
+    }
+
+    final public function read(int $id): PersonnaModel
+    {
+        return new PersonnaModel();
+    }
+
+    final public function update(PersonnaModel $personna): PersonnaModel
+    {
+        return $personna;
+    }
+
+    final public function delete(PersonnaModel $personna): void
+    {
+
     }
 }
