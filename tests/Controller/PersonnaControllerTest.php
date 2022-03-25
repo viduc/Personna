@@ -81,9 +81,15 @@ class Presenter implements PresenterInterface
 class Requete implements RequeteInterface
 {
     public string $action = 'create';
+    public array $params = [];
 
     final public function getAction(): string
     {
         return $this->action;
+    }
+
+    final public function getParam(string $param): mixed
+    {
+        return $this->params[$param];
     }
 }
