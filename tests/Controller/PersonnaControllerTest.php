@@ -14,6 +14,7 @@ use viduc\personna\src\Controller\PersonnaController;
 use viduc\personna\src\Interfaces\Presenters\PresenterInterface;
 use viduc\personna\src\Interfaces\Reponses\ReponseInterface;
 use viduc\personna\src\Interfaces\Requetes\RequeteInterface;
+use viduc\personna\src\Model\PersonnaModel;
 
 class PersonnaControllerTest extends TestCase
 {
@@ -80,8 +81,17 @@ class Presenter implements PresenterInterface
 
 class Requete implements RequeteInterface
 {
+
     public string $action = 'create';
     public array $params = [];
+
+    public function __construct()
+    {
+        $this->params = [
+            'id' => 0,
+            'personna' => new PersonnaModel()
+        ];
+    }
 
     final public function getAction(): string
     {

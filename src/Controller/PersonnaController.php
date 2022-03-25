@@ -42,17 +42,21 @@ class PersonnaController implements UseCaseInterface
                 break;
             case 'read':
                 $reponse = new ReponseCreate();
-                $reponse->setPersonnaModel($this->repository->read(0));
+                $reponse->setPersonnaModel(
+                    $this->repository->read($requete->getParam('id'))
+                );
                 $presenter->presente($reponse);
                 break;
             case 'update':
                 $reponse = new ReponseCreate();
-                $reponse->setPersonnaModel($this->repository->update(new PersonnaModel()));
+                $reponse->setPersonnaModel(
+                    $this->repository->update($requete->getParam('personna'))
+                );
                 $presenter->presente($reponse);
                 break;
             case 'delete':
                 $reponse = new ReponseCreate();
-                $this->repository->delete(new PersonnaModel());
+                $this->repository->delete($requete->getParam('personna'));
                 $presenter->presente($reponse);
                 break;
         }
