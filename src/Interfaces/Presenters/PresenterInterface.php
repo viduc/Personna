@@ -9,7 +9,9 @@ declare(strict_types=1);
 
 namespace viduc\personna\src\Interfaces\Presenters;
 
+use viduc\personna\src\Interfaces\Reponses\ReponseInterface;
+
 interface PresenterInterface
 {
-
+    public function presente(ReponseInterface $reponse): void;
 }
