@@ -11,5 +11,5 @@ namespace viduc\personna\src\Interfaces\Requetes;
 
 interface RequeteInterface
 {
-
+    public function getAction(): string;
 }

@@ -24,6 +24,20 @@ class PersonnaController implements UseCaseInterface
         RequeteInterface $requete,
         PresenterInterface $presenter
     ): PresenterInterface {
+        switch ($requete->getAction()) {
+            case 'create':
+
+                break;
+            case 'read':
+
+                break;
+            case 'update':
+
+                break;
+            case 'delete':
+
+                break;
+        }
         return $presenter;
     }
 }
