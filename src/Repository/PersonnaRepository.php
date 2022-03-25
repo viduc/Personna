@@ -22,4 +22,19 @@ class PersonnaRepository
     {
         return new PersonnaModel();
     }
+
+    final public function read(int $id): PersonnaModel
+    {
+        return new PersonnaModel();
+    }
+
+    final public function update(PersonnaModel $personna): PersonnaModel
+    {
+        return $personna;
+    }
+
+    final public function delete(PersonnaModel $personna): void
+    {
+
+    }
 }
