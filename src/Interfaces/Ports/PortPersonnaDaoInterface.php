@@ -7,9 +7,9 @@ declare(strict_types=1);
 /** Licence: Apache 2.0                                                      **/
 /******************************************************************************/
 
-namespace viduc\personna\src\Interfaces\Ports;
+namespace viduc\personna\Interfaces\Ports;
 
-use viduc\personna\src\Model\PersonnaModel;
+use viduc\personna\Model\PersonnaModel;
 
 interface PortPersonnaDaoInterface
 {

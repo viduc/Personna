@@ -7,26 +7,27 @@ declare(strict_types=1);
 /** Licence: Apache 2.0                                                      **/
 /******************************************************************************/
 
-namespace viduc\personna\tests\Controller;
+namespace Controller;
 
 use PHPUnit\Framework\TestCase;
-use viduc\personna\src\Controller\PersonnaController;
-use viduc\personna\src\Interfaces\Ports\PortPersonnaDaoInterface;
-use viduc\personna\src\Interfaces\Presenters\PresenterInterface;
-use viduc\personna\src\Interfaces\Reponses\ReponseInterface;
-use viduc\personna\src\Interfaces\Requetes\RequeteInterface;
-use viduc\personna\src\Model\PersonnaModel;
+use viduc\personna\Controller\Personna;
+use viduc\personna\Interfaces\Ports\PortPersonnaDaoInterface;
+use viduc\personna\Interfaces\Presenters\PresenterInterface;
+use viduc\personna\Interfaces\Reponses\ReponseInterface;
+use viduc\personna\Interfaces\Requetes\RequeteInterface;
+use viduc\personna\Model\PersonnaModel;
 
-class PersonnaControllerTest extends TestCase
+
+class PersonnaTest extends TestCase
 {
-    private PersonnaController $personna;
+    private Personna $personna;
     private RequeteInterface $requete;
     private PresenterInterface $presenter;
 
     final public function setUp(): void
     {
         parent::setUp();
-        $this->personna = new PersonnaController(new Port());
+        $this->personna = new Personna(new Port());
         $this->presenter = new Presenter();
         $this->requete = new Requete();
     }

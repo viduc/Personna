@@ -7,16 +7,16 @@ declare(strict_types=1);
 /** Licence: Apache 2.0                                                      **/
 /******************************************************************************/
 
-namespace viduc\personna\src\Controller;
+namespace viduc\personna\Controller;
 
-use viduc\personna\src\Interfaces\Controller\UseCaseInterface;
-use viduc\personna\src\Interfaces\Ports\PortPersonnaDaoInterface;
-use viduc\personna\src\Interfaces\Presenters\PresenterInterface;
-use viduc\personna\src\Interfaces\Requetes\RequeteInterface;
-use viduc\personna\src\Reponses\ReponseCreate;
-use viduc\personna\src\Repository\PersonnaRepository;
+use viduc\personna\Interfaces\Controller\UseCaseInterface;
+use viduc\personna\Interfaces\Ports\PortPersonnaDaoInterface;
+use viduc\personna\Interfaces\Presenters\PresenterInterface;
+use viduc\personna\Interfaces\Requetes\RequeteInterface;
+use viduc\personna\Reponses\ReponseCreate;
+use viduc\personna\Repository\PersonnaRepository;
 
-class PersonnaController implements UseCaseInterface
+class Personna implements UseCaseInterface
 {
     private PersonnaRepository $repository;
 

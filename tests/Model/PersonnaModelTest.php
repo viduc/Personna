@@ -10,7 +10,7 @@ declare(strict_types=1);
 namespace viduc\personna\tests\Model;
 
 use PHPUnit\Framework\TestCase;
-use viduc\personna\src\Model\PersonnaModel;
+use viduc\personna\Model\PersonnaModel;
 
 class PersonnaModelTest extends TestCase
 {

@@ -10,8 +10,8 @@ declare(strict_types=1);
 namespace viduc\personna\tests\Repository;
 
 use PHPUnit\Framework\TestCase;
-use viduc\personna\src\Model\PersonnaModel;
-use viduc\personna\src\Repository\PersonnaRepository;
+use viduc\personna\Model\PersonnaModel;
+use viduc\personna\Repository\PersonnaRepository;
 
 class PersonnaRepositoryTest extends TestCase
 {

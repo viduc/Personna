@@ -7,7 +7,7 @@ declare(strict_types=1);
 /** Licence: Apache 2.0                                                      **/
 /******************************************************************************/
 
-namespace viduc\personna\src\Interfaces\Requetes;
+namespace viduc\personna\Interfaces\Requetes;
 
 interface RequeteInterface
 {

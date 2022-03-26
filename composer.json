@@ -18,7 +18,7 @@
     "phpunit/phpunit": "^9.0"
   },
   "autoload": {
-    "psr-4": { "Viduc\\Personna\\": "src/" },
+    "psr-4": { "viduc\\personna\\": "src/" },
     "exclude-from-classmap": [
       "/tests/"
     ]

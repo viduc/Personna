@@ -7,10 +7,10 @@ declare(strict_types=1);
 /** Licence: Apache 2.0                                                      **/
 /******************************************************************************/
 
-namespace viduc\personna\src\Reponses;
+namespace viduc\personna\Reponses;
 
-use viduc\personna\src\Interfaces\Reponses\ReponseInterface;
-use viduc\personna\src\Model\PersonnaModel;
+use viduc\personna\Interfaces\Reponses\ReponseInterface;
+use viduc\personna\Model\PersonnaModel;
 
 class ReponseCreate implements ReponseInterface
 {
