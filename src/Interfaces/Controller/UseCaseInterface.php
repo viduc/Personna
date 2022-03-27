@@ -7,10 +7,10 @@ declare(strict_types=1);
 /** Licence: Apache 2.0                                                      **/
 /******************************************************************************/
 
-namespace viduc\personna\Interfaces\Controller;
+namespace Viduc\Personna\Interfaces\Controller;
 
-use viduc\personna\Interfaces\Presenters\PresenterInterface;
-use viduc\personna\Interfaces\Requetes\RequeteInterface;
+use Viduc\Personna\Interfaces\Presenters\PresenterInterface;
+use Viduc\Personna\Interfaces\Requetes\RequeteInterface;
 
 interface UseCaseInterface
 {

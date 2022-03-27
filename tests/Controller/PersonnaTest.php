@@ -10,13 +10,12 @@ declare(strict_types=1);
 namespace Controller;
 
 use PHPUnit\Framework\TestCase;
-use viduc\personna\Controller\Personna;
-use viduc\personna\Interfaces\Ports\PortPersonnaDaoInterface;
-use viduc\personna\Interfaces\Presenters\PresenterInterface;
-use viduc\personna\Interfaces\Reponses\ReponseInterface;
-use viduc\personna\Interfaces\Requetes\RequeteInterface;
-use viduc\personna\Model\PersonnaModel;
-
+use Viduc\Personna\Controller\Personna;
+use Viduc\Personna\Interfaces\Ports\PortPersonnaDaoInterface;
+use Viduc\Personna\Interfaces\Presenters\PresenterInterface;
+use Viduc\Personna\Interfaces\Reponses\ReponseInterface;
+use Viduc\Personna\Interfaces\Requetes\RequeteInterface;
+use Viduc\Personna\Model\PersonnaModel;
 
 class PersonnaTest extends TestCase
 {

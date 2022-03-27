@@ -7,10 +7,10 @@ declare(strict_types=1);
 /** Licence: Apache 2.0                                                      **/
 /******************************************************************************/
 
-namespace viduc\personna\tests\Model;
+namespace Viduc\Personna\tests\Model;
 
 use PHPUnit\Framework\TestCase;
-use viduc\personna\Model\PersonnaModel;
+use Viduc\Personna\Model\PersonnaModel;
 
 class PersonnaModelTest extends TestCase
 {

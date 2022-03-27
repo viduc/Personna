@@ -7,10 +7,10 @@ declare(strict_types=1);
 /** Licence: Apache 2.0                                                      **/
 /******************************************************************************/
 
-namespace viduc\personna\Repository;
+namespace Viduc\Personna\Repository;
 
-use viduc\personna\Interfaces\Ports\PortPersonnaDaoInterface;
-use viduc\personna\Model\PersonnaModel;
+use Viduc\Personna\Interfaces\Ports\PortPersonnaDaoInterface;
+use Viduc\Personna\Model\PersonnaModel;
 
 class PersonnaRepository
 {

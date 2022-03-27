@@ -7,9 +7,9 @@ declare(strict_types=1);
 /** Licence: Apache 2.0                                                      **/
 /******************************************************************************/
 
-namespace viduc\personna\Interfaces\Presenters;
+namespace Viduc\Personna\Interfaces\Presenters;
 
-use viduc\personna\Interfaces\Reponses\ReponseInterface;
+use Viduc\Personna\Interfaces\Reponses\ReponseInterface;
 
 interface PresenterInterface
 {

@@ -7,9 +7,9 @@ declare(strict_types=1);
 /** Licence: Apache 2.0                                                      **/
 /******************************************************************************/
 
-namespace viduc\personna\Interfaces\Reponses;
+namespace Viduc\Personna\Interfaces\Reponses;
 
-use viduc\personna\Model\PersonnaModel;
+use Viduc\Personna\Model\PersonnaModel;
 
 interface ReponseInterface
 {
