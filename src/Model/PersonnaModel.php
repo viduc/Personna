@@ -392,4 +392,56 @@ class PersonnaModel
     {
         return $this->isActive;
     }
+
+    /**
+     * Méthode de sérialisation pour json
+     * @return array
+     */
+    final public function jsonSerialize() : array
+    {
+        return [
+            'id' => $this->id,
+            'username' => $this->username,
+            'prenom' => $this->prenom,
+            'nom' => $this->nom,
+            'age' => $this->age,
+            'lieu' => $this->lieu,
+            'aisanceNumerique' => $this->aisanceNumerique,
+            'expertiseDomaine' => $this->expertiseDomaine,
+            'frequenceUsage' => $this->frequenceUsage,
+            'metier' => $this->metier,
+            'citation' => $this->citation,
+            'histoire' => $this->histoire,
+            'buts' => $this->buts,
+            'personnalite' => $this->personnalite,
+            'urlPhoto' => $this->urlPhoto,
+            'roles' => implode('|', $this->roles),
+            'isActive' => $this->isActive
+        ];
+    }
+
+    /**
+     * Permet de charger les informations récupérées depuis un fichier
+     * @param mixed$json
+     */
+    final public function chargerDepuisJson(mixed $json) : void
+    {
+        $this->id = $json->id;
+        $this->username = $json->username;
+        $this->prenom = $json->prenom;
+        $this->nom = $json->nom;
+        $this->age = $json->age;
+        $this->lieu = $json->lieu;
+        $this->aisanceNumerique = $json->aisanceNumerique;
+        $this->expertiseDomaine = $json->expertiseDomaine;
+        $this->frequenceUsage = $json->frequenceUsage;
+        $this->metier = $json->metier;
+        $this->citation = $json->citation;
+        $this->histoire = $json->histoire;
+        $this->buts = $json->buts;
+        $this->personnalite = $json->personnalite;
+        $this->urlPhoto = $json->urlPhoto;
+        $this->roles = explode('|', $json->roles);
+        $this->isActive = $json->isActive;
+    }
 }

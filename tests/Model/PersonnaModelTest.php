@@ -47,6 +47,26 @@ class PersonnaModelTest extends TestCase
         self::assertEquals($attendu->isActive, $personna->isActive());
     }
 
+    /**
+     * @test
+     * @return void
+     */
+    final public function jsonSerialize(): void
+    {
+        $personna = new PersonnaModel();
+        $attendu = $this->genererModelStandard();
+        foreach ($personna->jsonSerialize() as $key => $value) {
+            if ($key !== 'roles') {
+                self::assertEquals($attendu->$key, $value);
+            } else {
+                self::assertEquals(implode('|', $attendu->$key), $value);
+            }
+        }
+    }
+
+    /**
+     * @return \stdClass
+     */
     private function genererModelStandard(): \stdClass
     {
         $model = new \stdClass();
