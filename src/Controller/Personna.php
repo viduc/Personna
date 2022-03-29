@@ -10,7 +10,6 @@ declare(strict_types=1);
 namespace Viduc\Personna\Controller;
 
 use Viduc\Personna\Interfaces\Controller\UseCaseInterface;
-use Viduc\Personna\Interfaces\Ports\PortPersonnaDaoInterface;
 use Viduc\Personna\Interfaces\Presenters\PresenterInterface;
 use Viduc\Personna\Interfaces\Requetes\RequeteInterface;
 use Viduc\Personna\Reponses\ReponseCreate;
@@ -20,9 +19,9 @@ class Personna implements UseCaseInterface
 {
     private PersonnaRepository $repository;
 
-    public function __construct(PortPersonnaDaoInterface $port)
+    public function __construct()
     {
-        $this->repository = new PersonnaRepository($port);
+        $this->repository = new PersonnaRepository();
     }
 
     /**

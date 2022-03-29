@@ -29,7 +29,7 @@ class PersonnaModel
     private array $roles = [];
     private bool $isActive;
 
-    public function __construct() {
+    public function __construct(array $options = null) {
         $this->id = 0;
         $this->username = 'username';
         $this->prenom = 'prenom';

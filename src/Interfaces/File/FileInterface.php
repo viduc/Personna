@@ -7,17 +7,17 @@ declare(strict_types=1);
 /** Licence: Apache 2.0                                                      **/
 /******************************************************************************/
 
-namespace Viduc\Personna\Interfaces\Ports;
+namespace Viduc\Personna\Interfaces\File;
 
 use Viduc\Personna\Model\PersonnaModel;
 
-interface PortPersonnaDaoInterface
+interface FileInterface
 {
-    public function create(array $ptions): PersonnaModel;
+    public function create(PersonnaModel $personna): PersonnaModel;
 
     public function read(int $id): PersonnaModel;
 
-    public function update(PersonnaModel $personna): PersonnaModel;
+    public function update(PersonnaModel $personna): void;
 
     public function delete(PersonnaModel $personna): void;
 }

@@ -6,37 +6,36 @@ declare(strict_types=1);
 /** github: https://github.com/viduc/personna                                **/
 /** Licence: Apache 2.0                                                      **/
 /******************************************************************************/
-
-namespace Viduc\Personna\Repository;
+namespace Viduc\Personna\File;
 
 use Viduc\Personna\Interfaces\File\FileInterface;
 use Viduc\Personna\Model\PersonnaModel;
 
-class PersonnaRepository
+class File implements FileInterface
 {
-    private FileInterface $file;
+    private string $path;
 
-    public function __construct(FileInterface $file)
+    public function __construct(string $path)
     {
-        $this->file = $file;
+        $this->path = $path;
     }
 
-    final public function create(array $ptions): PersonnaModel
-    {
-        return $this->file->create(new PersonnaModel($ptions));
-    }
-
-    final public function read(int $id): PersonnaModel
+    public function create(PersonnaModel $personna): PersonnaModel
     {
         return new PersonnaModel();
     }
 
-    final public function update(PersonnaModel $personna): PersonnaModel
+    public function read(int $id): PersonnaModel
     {
-        return $personna;
+        return new PersonnaModel();
     }
 
-    final public function delete(PersonnaModel $personna): void
+    public function update(PersonnaModel $personna): void
+    {
+
+    }
+
+    public function delete(PersonnaModel $personna): void
     {
 
     }
