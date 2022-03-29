@@ -26,25 +26,7 @@ class PersonnaModelTest extends TestCase
      */
     final public function personnaModel(): void
     {
-        $personna = new PersonnaModel();
-        $attendu = $this->genererModelStandard();
-        self::assertEquals($attendu->id, $personna->getId());
-        self::assertEquals($attendu->username, $personna->getUsername());
-        self::assertEquals($attendu->prenom, $personna->getPrenom());
-        self::assertEquals($attendu->nom, $personna->getNom());
-        self::assertEquals($attendu->age, $personna->getAge());
-        self::assertEquals($attendu->lieu, $personna->getLieu());
-        self::assertEquals($attendu->aisanceNumerique, $personna->getAisanceNumerique());
-        self::assertEquals($attendu->expertiseDomaine, $personna->getExpertiseDomaine());
-        self::assertEquals($attendu->frequenceUsage, $personna->getFrequenceUsage());
-        self::assertEquals($attendu->metier, $personna->getMetier());
-        self::assertEquals($attendu->citation, $personna->getCitation());
-        self::assertEquals($attendu->histoire, $personna->getHistoire());
-        self::assertEquals($attendu->buts, $personna->getButs());
-        self::assertEquals($attendu->personnalite, $personna->getPersonnalite());
-        self::assertEquals($attendu->urlPhoto, $personna->getUrlPhoto());
-        self::assertEquals($attendu->roles, $personna->getRoles());
-        self::assertEquals($attendu->isActive, $personna->isActive());
+        $this->validerModel($this->genererModelStandard(), new PersonnaModel());
     }
 
     /**
@@ -62,6 +44,19 @@ class PersonnaModelTest extends TestCase
                 self::assertEquals(implode('|', $attendu->$key), $value);
             }
         }
+    }
+
+    /**
+     * @test
+     * @return void
+     */
+    final public function chargerDepuisJson(): void
+    {
+        $personna = new PersonnaModel();
+        $json = $this->genererModelStandard();
+        $json->roles = 'ROLE_USER';
+        $personna->chargerDepuisJson($json);
+        $this->validerModel($this->genererModelStandard(), $personna);
     }
 
     /**
@@ -89,5 +84,26 @@ class PersonnaModelTest extends TestCase
         $model->isActive = true;
 
         return $model;
+    }
+
+    private function validerModel(mixed $attendu, PersonnaModel $personna): void
+    {
+        self::assertEquals($attendu->id, $personna->getId());
+        self::assertEquals($attendu->username, $personna->getUsername());
+        self::assertEquals($attendu->prenom, $personna->getPrenom());
+        self::assertEquals($attendu->nom, $personna->getNom());
+        self::assertEquals($attendu->age, $personna->getAge());
+        self::assertEquals($attendu->lieu, $personna->getLieu());
+        self::assertEquals($attendu->aisanceNumerique, $personna->getAisanceNumerique());
+        self::assertEquals($attendu->expertiseDomaine, $personna->getExpertiseDomaine());
+        self::assertEquals($attendu->frequenceUsage, $personna->getFrequenceUsage());
+        self::assertEquals($attendu->metier, $personna->getMetier());
+        self::assertEquals($attendu->citation, $personna->getCitation());
+        self::assertEquals($attendu->histoire, $personna->getHistoire());
+        self::assertEquals($attendu->buts, $personna->getButs());
+        self::assertEquals($attendu->personnalite, $personna->getPersonnalite());
+        self::assertEquals($attendu->urlPhoto, $personna->getUrlPhoto());
+        self::assertEquals($attendu->roles, $personna->getRoles());
+        self::assertEquals($attendu->isActive, $personna->isActive());
     }
 }
