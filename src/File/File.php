@@ -8,6 +8,7 @@ declare(strict_types=1);
 /******************************************************************************/
 namespace Viduc\Personna\File;
 
+use Viduc\Personna\Exceptions\PersonnaFileException;
 use Viduc\Personna\Interfaces\File\FileInterface;
 use Viduc\Personna\Model\PersonnaModel;
 
@@ -20,9 +21,31 @@ class File implements FileInterface
         $this->path = $path;
     }
 
-    public function create(PersonnaModel $personna): PersonnaModel
+    /**
+     * @param PersonnaModel $personna
+     * @return PersonnaModel
+     * @throws PersonnaFileException
+     */
+    final public function create(PersonnaModel $personna): PersonnaModel
     {
-        return new PersonnaModel();
+        $personna->setId(1);
+        $file = $this->path. $personna->getUsername() . '.personna';
+        if (!file_exists($file)) {
+            try {
+                file_put_contents(
+                    $file,
+                    json_encode($personna->jsonSerialize(), JSON_THROW_ON_ERROR)
+                );// @codeCoverageIgnoreStart
+            } catch (\JsonException $e) {
+                throw new PersonnaFileException($e->getMessage(), 101);
+            }// @codeCoverageIgnoreStop
+        } else {
+            throw new PersonnaFileException(
+                'Le personna ' . $personna->getUsername() . ' existe  déjà',
+                100
+            );
+        }
+        return $personna;
     }
 
     public function read(int $id): PersonnaModel
