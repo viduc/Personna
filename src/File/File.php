@@ -23,12 +23,11 @@ class File implements FileInterface
 
     /**
      * @param PersonnaModel $personna
-     * @return PersonnaModel
+     * @return void
      * @throws PersonnaFileException
      */
-    final public function create(PersonnaModel $personna): PersonnaModel
+    final public function create(PersonnaModel $personna): void
     {
-        $personna->setId(1);
         $file = $this->path. $personna->getUsername() . '.personna';
         if (!file_exists($file)) {
             try {
@@ -45,7 +44,6 @@ class File implements FileInterface
                 100
             );
         }
-        return $personna;
     }
 
     public function read(int $id): PersonnaModel

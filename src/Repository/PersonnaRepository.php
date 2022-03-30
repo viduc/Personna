@@ -9,6 +9,8 @@ declare(strict_types=1);
 
 namespace Viduc\Personna\Repository;
 
+use Viduc\Personna\Exceptions\PersonnaFileException;
+use Viduc\Personna\Exceptions\PersonnaRepositoryException;
 use Viduc\Personna\Interfaces\File\FileInterface;
 use Viduc\Personna\Model\PersonnaModel;
 
@@ -24,12 +26,19 @@ class PersonnaRepository
     /**
      * @param array $ptions
      * @return PersonnaModel
+     * @throws PersonnaRepositoryException
      */
     final public function create(array $ptions): PersonnaModel
     {
         $personna = new PersonnaModel($ptions);
         $personna->setId($this->generateId());
-        return $this->file->create($personna);
+        try {
+            $this->file->create($personna);
+        } catch (PersonnaFileException $ex) {
+            throw new PersonnaRepositoryException($ex->getMessage(), $ex->getCode());
+        }
+
+        return $personna;
     }
 
     /**

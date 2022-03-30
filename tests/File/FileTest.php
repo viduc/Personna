@@ -33,10 +33,7 @@ class FileTest extends TestCase
      */
     final public function create(): void
     {
-        self::assertInstanceOf(
-            PersonnaModel::class,
-            $this->file->create(new PersonnaModel())
-        );
+        self::assertNull($this->file->create(new PersonnaModel()));
     }
 
     /**

@@ -6,24 +6,15 @@ declare(strict_types=1);
 /** github: https://github.com/viduc/personna                                **/
 /** Licence: Apache 2.0                                                      **/
 /******************************************************************************/
+namespace Viduc\Personna\Exceptions;
 
-namespace Viduc\Personna\Interfaces\File;
+use Exception;
 
-use Viduc\Personna\Exceptions\PersonnaFileException;
-use Viduc\Personna\Model\PersonnaModel;
-
-interface FileInterface
+/**
+ * 100 -> Le personna <personna> existe  déjà
+ * 101 -> Erreur JSON
+ */
+class PersonnaRepositoryException extends Exception
 {
-    /**
-     * @param PersonnaModel $personna
-     * @return void
-     * @throws PersonnaFileException
-     */
-    public function create(PersonnaModel $personna): void;
 
-    public function read(int $id): PersonnaModel;
-
-    public function update(PersonnaModel $personna): void;
-
-    public function delete(PersonnaModel $personna): void;
 }

@@ -9,6 +9,8 @@ declare(strict_types=1);
 
 namespace Viduc\Personna\Controller;
 
+use Viduc\Personna\Exceptions\PersonnaFileException;
+use Viduc\Personna\Exceptions\PersonnaRepositoryException;
 use Viduc\Personna\File\File;
 use Viduc\Personna\Interfaces\Controller\UseCaseInterface;
 use Viduc\Personna\Interfaces\File\FileInterface;
@@ -41,7 +43,12 @@ class Personna implements UseCaseInterface
         switch ($requete->getAction()) {
             case 'create':
                 $reponse = new ReponseCreate();
-                $reponse->setPersonnaModel($this->repository->create([]));
+                try {
+                    $reponse->setPersonnaModel($this->repository->create([]));
+                } catch (PersonnaRepositoryException $ex) {
+
+                }
+
                 $presenter->presente($reponse);
                 break;
             case 'read':
