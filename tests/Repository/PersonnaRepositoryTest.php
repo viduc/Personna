@@ -7,7 +7,7 @@ declare(strict_types=1);
 /** Licence: Apache 2.0                                                      **/
 /******************************************************************************/
 
-namespace Viduc\Personna\tests\Repository;
+namespace Viduc\Personna\Tests\Repository;
 
 use PHPUnit\Framework\TestCase;
 use Viduc\Personna\Model\PersonnaModel;
