@@ -6,7 +6,7 @@ declare(strict_types=1);
 /** github: https://github.com/viduc/personna                                **/
 /** Licence: Apache 2.0                                                      **/
 /******************************************************************************/
-namespace File;
+namespace Viduc\Personna\Tests\File;
 
 use PHPUnit\Framework\TestCase;
 use Viduc\Personna\Exceptions\PersonnaFileException;
