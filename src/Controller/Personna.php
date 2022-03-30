@@ -9,7 +9,9 @@ declare(strict_types=1);
 
 namespace Viduc\Personna\Controller;
 
+use Viduc\Personna\File\File;
 use Viduc\Personna\Interfaces\Controller\UseCaseInterface;
+use Viduc\Personna\Interfaces\File\FileInterface;
 use Viduc\Personna\Interfaces\Presenters\PresenterInterface;
 use Viduc\Personna\Interfaces\Requetes\RequeteInterface;
 use Viduc\Personna\Reponses\ReponseCreate;
@@ -17,11 +19,14 @@ use Viduc\Personna\Repository\PersonnaRepository;
 
 class Personna implements UseCaseInterface
 {
+    /**
+     * @var PersonnaRepository
+     */
     private PersonnaRepository $repository;
 
-    public function __construct()
+    public function __construct(string $path)
     {
-        $this->repository = new PersonnaRepository();
+        $this->repository = new PersonnaRepository(new File($path));
     }
 
     /**
@@ -61,5 +66,15 @@ class Personna implements UseCaseInterface
         }
 
         return $presenter;
+    }
+
+    /**
+     * @codeCoverageIgnore
+     * @param FileInterface $file
+     * @return void
+     */
+    final public function setFile(FileInterface $file): void
+    {
+        $this->repository->setFile($file);
     }
 }

@@ -40,4 +40,14 @@ class PersonnaRepository
     {
 
     }
+
+    /**
+     * @codeCoverageIgnore
+     * @param FileInterface $file
+     * @return void
+     */
+    final public function setFile(FileInterface $file): void
+    {
+        $this->file = $file;
+    }
 }

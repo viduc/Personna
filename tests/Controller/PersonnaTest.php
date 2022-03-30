@@ -11,7 +11,7 @@ namespace Controller;
 
 use PHPUnit\Framework\TestCase;
 use Viduc\Personna\Controller\Personna;
-use Viduc\Personna\Interfaces\Ports\PortPersonnaDaoInterface;
+use Viduc\Personna\Interfaces\File\FileInterface;
 use Viduc\Personna\Interfaces\Presenters\PresenterInterface;
 use Viduc\Personna\Interfaces\Reponses\ReponseInterface;
 use Viduc\Personna\Interfaces\Requetes\RequeteInterface;
@@ -26,7 +26,8 @@ class PersonnaTest extends TestCase
     final public function setUp(): void
     {
         parent::setUp();
-        $this->personna = new Personna(new Port());
+        $this->personna = new Personna('test');
+        $this->personna->setFile(new File());
         $this->presenter = new Presenter();
         $this->requete = new Requete();
     }
@@ -105,10 +106,10 @@ class Requete implements RequeteInterface
     }
 }
 
-class Port implements PortPersonnaDaoInterface
+class File implements FileInterface
 {
 
-    final public function create(array $ptions): PersonnaModel
+    final public function create(PersonnaModel $model): PersonnaModel
     {
         return new PersonnaModel();
     }
@@ -118,13 +119,12 @@ class Port implements PortPersonnaDaoInterface
         return new PersonnaModel();
     }
 
-    final public function update(PersonnaModel $personna): PersonnaModel
+    final public function update(PersonnaModel $personna): void
     {
-        return $personna;
     }
 
     final public function delete(PersonnaModel $personna): void
     {
-
     }
 }
+
