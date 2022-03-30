@@ -30,23 +30,23 @@ class PersonnaModel
     private bool $isActive;
 
     public function __construct(array $options = null) {
-        $this->id = 0;
-        $this->username = 'username';
-        $this->prenom = 'prenom';
-        $this->nom = 'nom';
-        $this->age = 0;
-        $this->lieu = 'lieu';
-        $this->aisanceNumerique = 0;
-        $this->expertiseDomaine = 0;
-        $this->frequenceUsage = 0;
-        $this->metier = 'metier';
-        $this->citation = 'citation';
-        $this->histoire = 'histoire';
-        $this->buts = 'buts';
-        $this->personnalite = 'personnalite';
-        $this->urlPhoto = 'urlphoto';
-        $this->roles = ['ROLE_USER'];
-        $this->isActive = true;
+        $this->id = $options['id'] ?? 0;
+        $this->username = $options['username'] ?? 'username';
+        $this->prenom = $options['prenom'] ?? 'prenom';
+        $this->nom = $options['nom'] ?? 'nom';
+        $this->age = $options['age'] ?? 0;
+        $this->lieu = $options['lieu'] ?? 'lieu';
+        $this->aisanceNumerique = $options['aisanceNumerique'] ?? 0;
+        $this->expertiseDomaine = $options['aisanceNumerique'] ?? 0;
+        $this->frequenceUsage = $options['aisanceNumerique'] ?? 0;
+        $this->metier = $options['metier'] ?? 'metier';
+        $this->citation = $options['citation'] ?? 'citation';
+        $this->histoire = $options['histoire'] ?? 'histoire';
+        $this->buts = $options['buts'] ?? 'buts';
+        $this->personnalite = $options['personnalite'] ?? 'personnalite';
+        $this->urlPhoto = $options['urlPhoto'] ?? 'urlPhoto';
+        $this->roles = $options['roles'] ?? ['ROLE_USER'];
+        $this->isActive = $options['isActive'] ?? true;
     }
 
     /**

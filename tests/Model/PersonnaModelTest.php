@@ -7,7 +7,7 @@ declare(strict_types=1);
 /** Licence: Apache 2.0                                                      **/
 /******************************************************************************/
 
-namespace Viduc\Personna\tests\Model;
+namespace Viduc\Personna\Tests\Model;
 
 use PHPUnit\Framework\TestCase;
 use Viduc\Personna\Model\PersonnaModel;
@@ -27,6 +27,20 @@ class PersonnaModelTest extends TestCase
     final public function personnaModel(): void
     {
         $this->validerModel($this->genererModelStandard(), new PersonnaModel());
+    }
+
+    /**
+     * @test
+     * @return void
+     */
+    final public function personnaModelWithOptions(): void
+    {
+        $options['id'] = 666;
+        $options['username'] = 'test';
+        $model = new PersonnaModel($options);
+        self::assertEquals(666, $model->getId());
+        self::assertEquals('test', $model->getUsername());
+        self::assertEquals('nom', $model->getNom());
     }
 
     /**
@@ -79,7 +93,7 @@ class PersonnaModelTest extends TestCase
         $model->histoire = 'histoire';
         $model->buts = 'buts';
         $model->personnalite = 'personnalite';
-        $model->urlPhoto = 'urlphoto';
+        $model->urlPhoto = 'urlPhoto';
         $model->roles = ['ROLE_USER'];
         $model->isActive = true;
 
