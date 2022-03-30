@@ -21,9 +21,32 @@ class PersonnaRepository
         $this->file = $file;
     }
 
+    /**
+     * @param array $ptions
+     * @return PersonnaModel
+     */
     final public function create(array $ptions): PersonnaModel
     {
-        return $this->file->create(new PersonnaModel($ptions));
+        $personna = new PersonnaModel($ptions);
+        $personna->setId($this->generateId());
+        return $this->file->create($personna);
+    }
+
+    /**
+     * @return int
+     */
+    private function generateId(): int
+    {
+        $tabId = [];
+        foreach ($this->getAll() as $personna) {
+            $tabId[] = $personna->getId();
+        }
+        $id = 0;
+        while (in_array($id, $tabId, true)) {
+            $id++;
+        }
+
+        return $id;
     }
 
     final public function read(int $id): PersonnaModel
@@ -39,6 +62,11 @@ class PersonnaRepository
     final public function delete(PersonnaModel $personna): void
     {
 
+    }
+
+    final public function getAll(): array
+    {
+        return [];
     }
 
     /**

@@ -22,5 +22,8 @@
     "exclude-from-classmap": [
       "/tests/"
     ]
+  },
+  "autoload-dev": {
+    "psr-4": { "Viduc\\Personna\\Tests\\": "tests/" }
   }
 }

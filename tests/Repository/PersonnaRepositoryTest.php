@@ -12,6 +12,7 @@ namespace Viduc\Personna\tests\Repository;
 use PHPUnit\Framework\TestCase;
 use Viduc\Personna\Model\PersonnaModel;
 use Viduc\Personna\Repository\PersonnaRepository;
+use Viduc\Personna\Tests\Ressources\File;
 
 class PersonnaRepositoryTest extends TestCase
 {
@@ -20,7 +21,7 @@ class PersonnaRepositoryTest extends TestCase
     final public function setUp(): void
     {
         parent::setUp();
-        $this->repository = new PersonnaRepository();
+        $this->repository = new PersonnaRepository(new File());
     }
 
     /**
@@ -29,7 +30,7 @@ class PersonnaRepositoryTest extends TestCase
      */
     final public function create(): void
     {
-        self::assertInstanceOf(PersonnaModel::class, $this->repository->create([]));
+        self::assertEquals(0, $this->repository->create([])->getId());
     }
 
     /**

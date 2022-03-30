@@ -7,15 +7,16 @@ declare(strict_types=1);
 /** Licence: Apache 2.0                                                      **/
 /******************************************************************************/
 
-namespace Controller;
+namespace Viduc\Personna\Tests\Controller;
 
 use PHPUnit\Framework\TestCase;
+
 use Viduc\Personna\Controller\Personna;
-use Viduc\Personna\Interfaces\File\FileInterface;
 use Viduc\Personna\Interfaces\Presenters\PresenterInterface;
 use Viduc\Personna\Interfaces\Reponses\ReponseInterface;
 use Viduc\Personna\Interfaces\Requetes\RequeteInterface;
 use Viduc\Personna\Model\PersonnaModel;
+use Viduc\Personna\Tests\Ressources\File;
 
 class PersonnaTest extends TestCase
 {
@@ -103,28 +104,6 @@ class Requete implements RequeteInterface
     final public function getParam(string $param): mixed
     {
         return $this->params[$param];
-    }
-}
-
-class File implements FileInterface
-{
-
-    final public function create(PersonnaModel $model): PersonnaModel
-    {
-        return new PersonnaModel();
-    }
-
-    final public function read(int $id): PersonnaModel
-    {
-        return new PersonnaModel();
-    }
-
-    final public function update(PersonnaModel $personna): void
-    {
-    }
-
-    final public function delete(PersonnaModel $personna): void
-    {
     }
 }
 
