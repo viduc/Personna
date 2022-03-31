@@ -58,9 +58,19 @@ class PersonnaRepository
         return $id;
     }
 
+    /**
+     * @param int $id
+     * @return PersonnaModel
+     * @throws PersonnaRepositoryException
+     */
     final public function read(int $id): PersonnaModel
     {
-        return new PersonnaModel();
+        foreach ($this->getAll() as $personna) {
+            if ($personna->getId() === $id) {
+                return $personna;
+            }
+        }
+        throw new PersonnaRepositoryException("Le personna n'existe pas", 102);
     }
 
     final public function update(PersonnaModel $personna): PersonnaModel
@@ -73,6 +83,9 @@ class PersonnaRepository
 
     }
 
+    /**
+     * @return PersonnaModel[]
+     */
     final public function getAll(): array
     {
         return [];

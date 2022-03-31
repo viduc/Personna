@@ -13,6 +13,7 @@ use Exception;
 /**
  * 100 -> Le personna <personna> existe  déjà
  * 101 -> Erreur JSON
+ * 102 -> Le personna n'existe pas
  */
 class PersonnaRepositoryException extends Exception
 {

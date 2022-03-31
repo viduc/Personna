@@ -9,15 +9,22 @@ declare(strict_types=1);
 
 namespace Viduc\Personna\Tests\Ressources;
 
+use Viduc\Personna\Exceptions\PersonnaFileException;
 use Viduc\Personna\Interfaces\File\FileInterface;
 use Viduc\Personna\Model\PersonnaModel;
 
 class File implements FileInterface
 {
-
-    final public function create(PersonnaModel $model): PersonnaModel
+    /**
+     * @param PersonnaModel $model
+     * @return void
+     * @throws PersonnaFileException
+     */
+    final public function create(PersonnaModel $model): void
     {
-        return $model;
+        if ($model->getUsername() === 'testException') {
+            throw new PersonnaFileException('test', 100);
+        }
     }
 
     final public function read(int $id): PersonnaModel

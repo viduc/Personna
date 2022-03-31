@@ -10,6 +10,7 @@ declare(strict_types=1);
 namespace Viduc\Personna\Tests\Repository;
 
 use PHPUnit\Framework\TestCase;
+use Viduc\Personna\Exceptions\PersonnaRepositoryException;
 use Viduc\Personna\Model\PersonnaModel;
 use Viduc\Personna\Repository\PersonnaRepository;
 use Viduc\Personna\Tests\Ressources\File;
@@ -27,6 +28,7 @@ class PersonnaRepositoryTest extends TestCase
     /**
      * @test
      * @return void
+     * @throws PersonnaRepositoryException
      */
     final public function create(): void
     {
@@ -36,6 +38,21 @@ class PersonnaRepositoryTest extends TestCase
     /**
      * @test
      * @return void
+     */
+    final public function createException(): void
+    {
+        try {
+            $this->repository->create(['username' => 'testException']);
+        } catch (PersonnaRepositoryException $ex) {
+            self::assertEquals('test', $ex->getMessage());
+            self::assertEquals(100, $ex->getCode());
+        }
+    }
+
+    /**
+     * @test
+     * @return void
+     * @throws PersonnaRepositoryException
      */
     final public function read(): void
     {
