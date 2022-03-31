@@ -56,7 +56,24 @@ class PersonnaRepositoryTest extends TestCase
      */
     final public function read(): void
     {
-        self::assertInstanceOf(PersonnaModel::class, $this->repository->read(0));
+        self::assertEquals(666, $this->repository->read(666)->getId());
+    }
+
+    /**
+     * @test
+     * @return void
+     */
+    final public function readException(): void
+    {
+        try {
+            $this->repository->read(1478);
+        } catch (PersonnaRepositoryException $ex) {
+            self::assertEquals(
+                "Le personna n'existe pas",
+                $ex->getMessage()
+            );
+            self::assertEquals(102, $ex->getCode());
+        }
     }
 
     /**

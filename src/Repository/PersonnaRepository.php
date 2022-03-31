@@ -70,6 +70,7 @@ class PersonnaRepository
                 return $personna;
             }
         }
+
         throw new PersonnaRepositoryException("Le personna n'existe pas", 102);
     }
 
@@ -88,7 +89,7 @@ class PersonnaRepository
      */
     final public function getAll(): array
     {
-        return [];
+        return $this->file->getAll();
     }
 
     /**

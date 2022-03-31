@@ -39,4 +39,12 @@ class File implements FileInterface
     final public function delete(PersonnaModel $personna): void
     {
     }
+
+    /**
+     * @return PersonnaModel[]
+     */
+    final public function getAll(): array
+    {
+        return [new PersonnaModel(['id'=>666])];
+    }
 }

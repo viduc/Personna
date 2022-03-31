@@ -26,4 +26,9 @@ interface FileInterface
     public function update(PersonnaModel $personna): void;
 
     public function delete(PersonnaModel $personna): void;
+
+    /**
+     * @return PersonnaModel[]
+     */
+    public function getAll(): array;
 }
