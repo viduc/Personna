@@ -9,6 +9,7 @@ declare(strict_types=1);
 
 namespace Viduc\Personna\Tests\Ressources;
 
+use Symfony\Component\HttpFoundation\File\Exception\FileException;
 use Viduc\Personna\Exceptions\PersonnaFileException;
 use Viduc\Personna\Interfaces\File\FileInterface;
 use Viduc\Personna\Model\PersonnaModel;
@@ -32,8 +33,25 @@ class File implements FileInterface
         return new PersonnaModel();
     }
 
+    /**
+     * @param PersonnaModel $personna
+     * @return void
+     * @throws PersonnaFileException
+     */
     final public function update(PersonnaModel $personna): void
     {
+        if ($personna->getId() === 421) {
+            throw new PersonnaFileException(
+                "Le personna " . $personna->getUsername() . " n'existe pas",
+                102
+            );
+        }
+        if ($personna->getId() === 521) {
+            throw new PersonnaFileException(
+                "L'enregistrement du personna " . $personna->getUsername() . " a échoué",
+                103
+            );
+        }
     }
 
     final public function delete(PersonnaModel $personna): void

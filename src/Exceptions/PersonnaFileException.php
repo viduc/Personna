@@ -13,6 +13,8 @@ use Exception;
 /**
  * 100 -> Le personna <personna> existe  déjà
  * 101 -> Erreur JSON
+ * 102 -> le personna <personna> n'existe pas
+ * 103 -> "L'enregistrement du personna <personna> a échoué"
  */
 class PersonnaFileException extends Exception
 {

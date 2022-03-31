@@ -9,6 +9,7 @@ declare(strict_types=1);
 
 namespace Viduc\Personna\Tests\Repository;
 
+use Doctrine\ORM\Exception\RepositoryException;
 use PHPUnit\Framework\TestCase;
 use Viduc\Personna\Exceptions\PersonnaRepositoryException;
 use Viduc\Personna\Model\PersonnaModel;
@@ -79,11 +80,40 @@ class PersonnaRepositoryTest extends TestCase
     /**
      * @test
      * @return void
+     * @throws PersonnaRepositoryException
      */
     final public function update(): void
     {
-        $persona = new PersonnaModel();
-        self::assertInstanceOf(PersonnaModel::class, $this->repository->update($persona));
+        $persona = new PersonnaModel(['id' => 321]);
+        self::assertEquals(321, $this->repository->update($persona)->getId());
+    }
+
+    /**
+     * @test
+     * @return void
+     */
+    final public function updateException(): void
+    {
+        $persona = new PersonnaModel(['id' => 421]);
+        try {
+            $this->repository->update($persona);
+        } catch (PersonnaRepositoryException $ex) {
+            self::assertEquals(
+                "Le personna username n'existe pas",
+                $ex->getMessage()
+            );
+            self::assertEquals(102, $ex->getCode());
+        }
+        $persona = new PersonnaModel(['id' => 521]);
+        try {
+            $this->repository->update($persona);
+        } catch (PersonnaRepositoryException $ex) {
+            self::assertEquals(
+                "L'enregistrement du personna username a échoué",
+                $ex->getMessage()
+            );
+            self::assertEquals(103, $ex->getCode());
+        }
     }
 
     /**

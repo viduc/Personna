@@ -74,8 +74,19 @@ class PersonnaRepository
         throw new PersonnaRepositoryException("Le personna n'existe pas", 102);
     }
 
+    /**
+     * @param PersonnaModel $personna
+     * @return PersonnaModel
+     * @throws PersonnaRepositoryException
+     */
     final public function update(PersonnaModel $personna): PersonnaModel
     {
+        try {
+            $this->file->update($personna);
+        } catch (PersonnaFileException $ex) {
+            throw new PersonnaRepositoryException($ex->getMessage(), $ex->getCode());
+        }
+
         return $personna;
     }
 
