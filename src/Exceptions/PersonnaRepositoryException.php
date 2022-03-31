@@ -14,6 +14,8 @@ use Exception;
  * 100 -> Le personna <personna> existe  déjà
  * 101 -> Erreur JSON
  * 102 -> Le personna n'existe pas
+ * 103 -> L'enregistrement du personna <personna> a échoué
+ * 104 -> La suppression du personna <personna> a échouée
  */
 class PersonnaRepositoryException extends Exception
 {
