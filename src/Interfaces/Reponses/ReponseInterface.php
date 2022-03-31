@@ -9,6 +9,7 @@ declare(strict_types=1);
 
 namespace Viduc\Personna\Interfaces\Reponses;
 
+use Viduc\Personna\Model\ErreurModel;
 use Viduc\Personna\Model\PersonnaModel;
 
 interface ReponseInterface
@@ -16,5 +17,9 @@ interface ReponseInterface
     public function setPersonnaModel(PersonnaModel $personna): void;
 
     public function getPersonnaModel(): PersonnaModel;
+
+    public function setErreur(ErreurModel $erreur): void;
+
+    public function getErreurModel(): ErreurModel;
 
 }

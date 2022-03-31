@@ -10,11 +10,13 @@ declare(strict_types=1);
 namespace Viduc\Personna\Reponses;
 
 use Viduc\Personna\Interfaces\Reponses\ReponseInterface;
+use Viduc\Personna\Model\ErreurModel;
 use Viduc\Personna\Model\PersonnaModel;
 
 class ReponseCreate implements ReponseInterface
 {
     private PersonnaModel $personna;
+    private ErreurModel $erreur;
 
     final public function setPersonnaModel(PersonnaModel $personna): void
     {
@@ -24,5 +26,15 @@ class ReponseCreate implements ReponseInterface
     final public function getPersonnaModel(): PersonnaModel
     {
         return $this->personna;
+    }
+
+    final public function setErreur(ErreurModel $erreur): void
+    {
+        $this->erreur = $erreur;
+    }
+
+    final public function getErreurModel(): ErreurModel
+    {
+        return $this->erreur;
     }
 }
