@@ -90,9 +90,18 @@ class PersonnaRepository
         return $personna;
     }
 
+    /**
+     * @param PersonnaModel $personna
+     * @return void
+     * @throws PersonnaRepositoryException
+     */
     final public function delete(PersonnaModel $personna): void
     {
-
+        try {
+            $this->file->delete($personna);
+        } catch (PersonnaFileException $ex) {
+            throw new PersonnaRepositoryException($ex->getMessage(), $ex->getCode());
+        }
     }
 
     /**

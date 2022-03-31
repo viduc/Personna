@@ -120,8 +120,27 @@ class PersonnaRepositoryTest extends TestCase
      * @test
      * @return void
      */
-    final public function delete(): void
+    final public function deleteException(): void
     {
-        self::assertNull($this->repository->delete(new PersonnaModel()));
+        $persona = new PersonnaModel(['id' => 421]);
+        try {
+            $this->repository->delete($persona);
+        } catch (PersonnaRepositoryException $ex) {
+            self::assertEquals(
+                "Le personna username n'existe pas",
+                $ex->getMessage()
+            );
+            self::assertEquals(102, $ex->getCode());
+        }
+        $persona = new PersonnaModel(['id' => 521]);
+        try {
+            $this->repository->delete($persona);
+        } catch (PersonnaRepositoryException $ex) {
+            self::assertEquals(
+                "La suppression du personna username a échouée",
+                $ex->getMessage()
+            );
+            self::assertEquals(104, $ex->getCode());
+        }
     }
 }

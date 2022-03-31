@@ -28,11 +28,6 @@ class File implements FileInterface
         }
     }
 
-    final public function read(int $id): PersonnaModel
-    {
-        return new PersonnaModel();
-    }
-
     /**
      * @param PersonnaModel $personna
      * @return void
@@ -54,8 +49,25 @@ class File implements FileInterface
         }
     }
 
+    /**
+     * @param PersonnaModel $personna
+     * @return void
+     * @throws PersonnaFileException
+     */
     final public function delete(PersonnaModel $personna): void
     {
+        if ($personna->getId() === 421) {
+            throw new PersonnaFileException(
+                "Le personna " . $personna->getUsername() . " n'existe pas",
+                102
+            );
+        }
+        if ($personna->getId() === 521) {
+            throw new PersonnaFileException(
+                "La suppression du personna " . $personna->getUsername() . " a échouée",
+                104
+            );
+        }
     }
 
     /**

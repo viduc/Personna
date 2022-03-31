@@ -21,10 +21,18 @@ interface FileInterface
      */
     public function create(PersonnaModel $personna): void;
 
-    public function read(int $id): PersonnaModel;
-
+    /**
+     * @param PersonnaModel $personna
+     * @return void
+     * @throws PersonnaFileException
+     */
     public function update(PersonnaModel $personna): void;
 
+    /**
+     * @param PersonnaModel $personna
+     * @return void
+     * @throws PersonnaFileException
+     */
     public function delete(PersonnaModel $personna): void;
 
     /**
