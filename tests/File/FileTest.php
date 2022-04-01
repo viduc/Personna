@@ -116,7 +116,7 @@ class FileTest extends TestCase
     /**
      * @test
      * @return void
-     * @throws \JsonException
+     * @throws \JsonException|PersonnaFileException
      */
     final public function getAll(): void
     {

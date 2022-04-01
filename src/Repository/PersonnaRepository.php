@@ -106,11 +106,15 @@ class PersonnaRepository
 
     /**
      * @return PersonnaModel[]
-     * @throws PersonnaFileException
+     * @throws PersonnaRepositoryException
      */
     final public function getAll(): array
     {
-        return $this->file->getAll();
+        try {
+            return $this->file->getAll();
+        } catch (PersonnaFileException $ex) {
+            throw new PersonnaRepositoryException($ex->getMessage(), $ex->getCode());
+        }
     }
 
     /**

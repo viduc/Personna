@@ -70,11 +70,20 @@ class File implements FileInterface
         }
     }
 
+    public bool $getAllExecption = false;
+
     /**
      * @return PersonnaModel[]
+     * @throws PersonnaFileException
      */
     final public function getAll(): array
     {
-        return [new PersonnaModel(['id'=>666])];
+        if (!$this->getAllExecption) {
+            return [new PersonnaModel(['id'=>666])];
+        }
+        throw new PersonnaFileException(
+            "Le chargement d'un fichier personna test a échoué",
+            101
+        );
     }
 }

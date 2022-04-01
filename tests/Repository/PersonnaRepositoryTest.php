@@ -11,6 +11,7 @@ namespace Viduc\Personna\Tests\Repository;
 
 use Doctrine\ORM\Exception\RepositoryException;
 use PHPUnit\Framework\TestCase;
+use Viduc\Personna\Exceptions\PersonnaFileException;
 use Viduc\Personna\Exceptions\PersonnaRepositoryException;
 use Viduc\Personna\Model\PersonnaModel;
 use Viduc\Personna\Repository\PersonnaRepository;
@@ -19,11 +20,13 @@ use Viduc\Personna\Tests\Ressources\File;
 class PersonnaRepositoryTest extends TestCase
 {
     private PersonnaRepository $repository;
+    private File $file;
 
     final public function setUp(): void
     {
         parent::setUp();
-        $this->repository = new PersonnaRepository(new File());
+        $this->file = new File();
+        $this->repository = new PersonnaRepository($this->file);
     }
 
     /**
@@ -141,6 +144,24 @@ class PersonnaRepositoryTest extends TestCase
                 $ex->getMessage()
             );
             self::assertEquals(104, $ex->getCode());
+        }
+    }
+
+    /**
+     * @test
+     * @return void
+     */
+    final public function getAllException(): void
+    {
+        $this->file->getAllExecption = true;
+        try {
+            $this->repository->getAll();
+        } catch (PersonnaRepositoryException $ex) {
+            self::assertEquals(
+                "Le chargement d'un fichier personna test a échoué",
+                $ex->getMessage()
+            );
+            self::assertEquals(101, $ex->getCode());
         }
     }
 }
