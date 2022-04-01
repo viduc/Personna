@@ -3,14 +3,15 @@ php:
   - '8.0'
 env:
   global:
-    - CC_TEST_REPORTER_ID=6c93a972033b86464ae4d510468f04e4b3bda78f8184780b8af0b6d6d7aa8600
+    - CC_TEST_REPORTER_ID=793930a7399b83ad2494e0452dce886c26c03c837147bb7564c357287d65a488
 before_script:
   - travis_retry composer self-update
   - travis_retry composer install --no-interaction --prefer-source --dev
 script:
   - composer install
-  - composer require codeclimate/php-test-reporter --with-all-dependencies
-  - php vendor/bin/phpunit --coverage-clover=clover.xml
-  - curl -Os https://uploader.codecov.io/latest/linux/codecov
-  - chmod +x codecov
-  - ./codecov -t ae4df776-a27a-4c8b-8620-b25bb3d81e68
+  - curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 > ./cc-test-reporter
+  - chmod +x ./cc-test-reporter
+  - sudo mkdir -p $CIRCLE_TEST_REPORTS/phpunit
+  - ./cc-test-reporter before-build
+  - sudo vendor/bin/phpunit --coverage-clover clover.xml
+  - ./cc-test-reporter after-build -t clover --exit-code $?
