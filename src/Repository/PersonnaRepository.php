@@ -29,7 +29,7 @@ class PersonnaRepository
      * @return PersonnaModel
      * @throws PersonnaRepositoryException
      */
-    final public function create(
+    public function create(
         PersonnaModel $personna = null,
         array $options = []
     ): PersonnaModel {
@@ -46,6 +46,7 @@ class PersonnaRepository
 
     /**
      * @return int
+     * @throws PersonnaRepositoryException
      */
     private function generateId(): int
     {

@@ -33,7 +33,7 @@ class ReponseCreate implements ReponseInterface
         $this->erreur = $erreur;
     }
 
-    final public function getErreurModel(): ErreurModel
+    final public function getErreur(): ErreurModel
     {
         return $this->erreur;
     }

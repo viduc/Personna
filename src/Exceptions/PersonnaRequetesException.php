@@ -6,20 +6,14 @@ declare(strict_types=1);
 /** github: https://github.com/viduc/personna                                **/
 /** Licence: Apache 2.0                                                      **/
 /******************************************************************************/
+namespace Viduc\Personna\Exceptions;
 
-namespace Viduc\Personna\Interfaces\Reponses;
+use Exception;
 
-use Viduc\Personna\Model\ErreurModel;
-use Viduc\Personna\Model\PersonnaModel;
-
-interface ReponseInterface
+/**
+ * 100 -> Le paramètre <param>> n'existe pas
+ */
+class PersonnaRequetesException extends Exception
 {
-    public function setPersonnaModel(PersonnaModel $personna): void;
-
-    public function getPersonnaModel(): PersonnaModel;
-
-    public function setErreur(ErreurModel $erreur): void;
-
-    public function getErreur(): ErreurModel;
 
 }
