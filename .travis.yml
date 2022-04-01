@@ -7,11 +7,10 @@ env:
 before_script:
   - travis_retry composer self-update
   - travis_retry composer install --no-interaction --prefer-source --dev
-  - curl -Os https://uploader.codecov.io/latest/linux/codecov
-  - chmod +x codecov
 script:
   - composer install
   - composer require codeclimate/php-test-reporter --with-all-dependencies
   - php vendor/bin/phpunit --coverage-clover=clover.xml
-after_script:
-  - ./codecov
+  - curl -Os https://uploader.codecov.io/latest/linux/codecov
+  - chmod +x codecov
+  - ./codecov -t ae4df776-a27a-4c8b-8620-b25bb3d81e68
