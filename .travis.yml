@@ -7,16 +7,11 @@ env:
 before_script:
   - travis_retry composer self-update
   - travis_retry composer install --no-interaction --prefer-source --dev
-  - curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64
-    > ./cc-test-reporter
-  - chmod +x ./cc-test-reporter
-  - "./cc-test-reporter before-build"
+  - curl -Os https://uploader.codecov.io/latest/linux/codecov
+  - chmod +x codecov
 script:
   - composer install
   - composer require codeclimate/php-test-reporter --with-all-dependencies
   - php vendor/bin/phpunit --coverage-clover=clover.xml
 after_script:
-  - "./cc-test-reporter after-build -t clover --exit-code $TRAVIS_TEST_RESULT"
-  - cp clover.xml coverage.xml
-after_success:
-  - bash <(curl -s https://codecov.io/bash)
+  - ./codecov
