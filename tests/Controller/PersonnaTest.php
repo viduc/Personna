@@ -119,7 +119,7 @@ class PersonnaTest extends TestCase
     final public function executeReadException(): void
     {
         $this->requete->setAction('read');
-        $this->requete->setParam(['id' =>0]);
+        $this->requete->setParam(['id' => 0]);
         $this->repository->method('read')->willThrowException(
             new PersonnaRepositoryException('test', 100)
         );
@@ -159,29 +159,115 @@ class PersonnaTest extends TestCase
      * @test
      * @return void
      */
-    final public function executeTest(): void
+    final public function executeUpdate(): void
     {
+        $this->requete->setAction('update');
+        $this->requete->setParam(['id' => 0]);
+        $this->repository->method('update')->willReturn(new PersonnaModel());
+        self::assertInstanceOf(
+            ReponseInterface::class,
+            $this->personna->execute($this->requete, $this->presenter)->reponse
+        );
+    }
 
-        /** read */
-        $this->requete->action = 'read';
-        $this->presenter->reinitialize();
+    /**
+     * @test
+     * @return void
+     */
+    final public function executeUpdateException(): void
+    {
+        $this->requete->setAction('update');
+        $this->requete->setParam(['personna' => new PersonnaModel()]);
+        $this->repository->method('update')->willThrowException(
+            new PersonnaRepositoryException('test', 100)
+        );
+        self::assertEquals(
+            'test',
+            $this->personna->execute(
+                $this->requete,
+                $this->presenter
+            )->reponse->getErreur()->getMessage()
+        );
+        self::assertEquals(
+            100,
+            $this->personna->execute(
+                $this->requete,
+                $this->presenter
+            )->reponse->getErreur()->getCode()
+        );
+
+        $this->requete->setParam([]);
+        self::assertEquals(
+            "Le paramètre personna n'existe pas",
+            $this->personna->execute(
+                $this->requete,
+                $this->presenter
+            )->reponse->getErreur()->getMessage()
+        );
+        self::assertEquals(
+            100,
+            $this->personna->execute(
+                $this->requete,
+                $this->presenter
+            )->reponse->getErreur()->getCode()
+        );
+    }
+
+    /**
+     * @test
+     * @return void
+     */
+    final public function executeDelete(): void
+    {
+        $this->requete->setAction('delete');
+        $this->requete->setParam(['personna' => new PersonnaModel()]);
+        $this->repository->method('delete')->willReturnSelf();
         self::assertInstanceOf(
             ReponseInterface::class,
             $this->personna->execute($this->requete, $this->presenter)->reponse
         );
-        /** update */
-        $this->requete->action = 'update';
-        $this->presenter->reinitialize();
-        self::assertInstanceOf(
-            ReponseInterface::class,
-            $this->personna->execute($this->requete, $this->presenter)->reponse
+    }
+
+    /**
+     * @test
+     * @return void
+     */
+    final public function executeDeleteException(): void
+    {
+        $this->requete->setAction('delete');
+        $this->requete->setParam(['personna' => new PersonnaModel()]);
+        $this->repository->method('delete')->willThrowException(
+            new PersonnaRepositoryException('test', 100)
         );
-        /** delete */
-        $this->requete->action = 'delete';
-        $this->presenter->reinitialize();
-        self::assertInstanceOf(
-            ReponseInterface::class,
-            $this->personna->execute($this->requete, $this->presenter)->reponse
+        self::assertEquals(
+            'test',
+            $this->personna->execute(
+                $this->requete,
+                $this->presenter
+            )->reponse->getErreur()->getMessage()
+        );
+        self::assertEquals(
+            100,
+            $this->personna->execute(
+                $this->requete,
+                $this->presenter
+            )->reponse->getErreur()->getCode()
+        );
+
+        $this->requete->setParam([]);
+        self::assertEquals(
+            "Le paramètre personna n'existe pas",
+            $this->personna->execute(
+                $this->requete,
+                $this->presenter
+            )->reponse->getErreur()->getMessage()
+        );
+        self::assertEquals(
+            100,
+            $this->personna->execute(
+                $this->requete,
+                $this->presenter
+            )->reponse->getErreur()->getCode()
         );
     }
 }

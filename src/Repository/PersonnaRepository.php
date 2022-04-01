@@ -83,7 +83,7 @@ class PersonnaRepository
      * @return PersonnaModel
      * @throws PersonnaRepositoryException
      */
-    final public function update(PersonnaModel $personna): PersonnaModel
+    public function update(PersonnaModel $personna): PersonnaModel
     {
         try {
             $this->file->update($personna);
@@ -99,7 +99,7 @@ class PersonnaRepository
      * @return void
      * @throws PersonnaRepositoryException
      */
-    final public function delete(PersonnaModel $personna): void
+    public function delete(PersonnaModel $personna): void
     {
         try {
             $this->file->delete($personna);
