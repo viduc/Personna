@@ -10,6 +10,7 @@ declare(strict_types=1);
 namespace Viduc\Personna\Controller;
 
 use Viduc\Personna\Exceptions\PersonnaRepositoryException;
+use Viduc\Personna\Exceptions\PersonnaRequetesException;
 use Viduc\Personna\File\File;
 use Viduc\Personna\Interfaces\Controller\UseCaseInterface;
 use Viduc\Personna\Interfaces\File\FileInterface;
@@ -35,7 +36,6 @@ class Personna implements UseCaseInterface
      * @param RequeteInterface $requete
      * @param PresenterInterface $presenter
      * @return PresenterInterface
-     * @throws PersonnaRepositoryException
      */
     final public function execute(
         RequeteInterface $requete,
@@ -45,11 +45,13 @@ class Personna implements UseCaseInterface
             case 'create':
                 $reponse = new ReponseCreate();
                 try {
-                    $reponse->setPersonnaModel($this->repository->create([]));
-                } catch (PersonnaRepositoryException $ex) {
+                    $reponse->setPersonnaModel($this->repository->create(
+                        $requete->getParam('personna')
+                    ));
+                } catch (PersonnaRepositoryException | PersonnaRequetesException $ex) {
                     $reponse->setErreur(
-                        new ErreurModel($ex->getCode(), $ex->getMessage()))
-                    ;
+                        new ErreurModel($ex->getCode(), $ex->getMessage())
+                    );
                 }
                 $presenter->presente($reponse);
                 break;
@@ -85,5 +87,15 @@ class Personna implements UseCaseInterface
     final public function setFile(FileInterface $file): void
     {
         $this->repository->setFile($file);
+    }
+
+    /**
+     * @codeCoverageIgnore
+     * @param PersonnaRepository $repository
+     * @return void
+     */
+    final public function setRepository(PersonnaRepository $repository): void
+    {
+        $this->repository = $repository;
     }
 }
