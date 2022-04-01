@@ -60,21 +60,11 @@ class FileTest extends TestCase
     /**
      * @test
      * @return void
-     */
-    final public function read(): void
-    {
-        self::assertInstanceOf(
-            PersonnaModel::class,
-            $this->file->read(0)
-        );
-    }
-
-    /**
-     * @test
-     * @return void
+     * @throws PersonnaFileException
      */
     final public function update(): void
     {
+        fopen($this->path . 'username.personna', 'wb');
         self::assertNull($this->file->update(new PersonnaModel()));
     }
 
@@ -82,9 +72,60 @@ class FileTest extends TestCase
      * @test
      * @return void
      */
+    final public function updateException(): void
+    {
+        try {
+            $this->file->update(new PersonnaModel());
+        } catch (PersonnaFileException $ex) {
+            self::assertEquals(
+                "Le personna username n'existe pas",
+                $ex->getMessage()
+            );
+            self::assertEquals(102, $ex->getCode());
+        }
+    }
+
+    /**
+     * @test
+     * @return void
+     * @throws PersonnaFileException
+     */
     final public function delete(): void
     {
+        fopen($this->path . 'username.personna', 'wb');
         self::assertNull($this->file->delete(new PersonnaModel()));
+    }
+
+    /**
+     * @test
+     * @return void
+     */
+    final public function deleteException(): void
+    {
+        try {
+            $this->file->delete(new PersonnaModel());
+        } catch (PersonnaFileException $ex) {
+            self::assertEquals(
+                "Le personna username n'existe pas",
+                $ex->getMessage()
+            );
+            self::assertEquals(102, $ex->getCode());
+        }
+    }
+
+    /**
+     * @test
+     * @return void
+     * @throws \JsonException
+     */
+    final public function getAll(): void
+    {
+        $personna = new PersonnaModel(['username' => 'getall']);
+        file_put_contents(
+            $this->path . 'getall.personna',
+            json_encode($personna->jsonSerialize(), JSON_THROW_ON_ERROR)
+        );
+        self::assertEquals('getall', $this->file->getAll()[0]->getUsername());
     }
 
     /**

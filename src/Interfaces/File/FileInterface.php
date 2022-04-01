@@ -37,6 +37,7 @@ interface FileInterface
 
     /**
      * @return PersonnaModel[]
+     * @throws PersonnaFileException
      */
     public function getAll(): array;
 }

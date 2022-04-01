@@ -36,7 +36,10 @@ class File implements FileInterface
                     json_encode($personna->jsonSerialize(), JSON_THROW_ON_ERROR)
                 );// @codeCoverageIgnoreStart
             } catch (\JsonException $e) {
-                throw new PersonnaFileException($e->getMessage(), 101);
+                throw new PersonnaFileException(
+                    "L'enregistrement du personna " . $personna->getUsername() . " a échoué",
+                    103
+                );
             }// @codeCoverageIgnoreStop
         } else {
             throw new PersonnaFileException(
@@ -46,18 +49,69 @@ class File implements FileInterface
         }
     }
 
-    public function read(int $id): PersonnaModel
+    /**
+     * @param PersonnaModel $personna
+     * @return void
+     * @throws PersonnaFileException
+     */
+    final public function update(PersonnaModel $personna): void
     {
-        return new PersonnaModel();
+        $file = $this->path. $personna->getUsername() . '.personna';
+        if (!file_exists($file)) {
+            throw new PersonnaFileException(
+                "Le personna " . $personna->getUsername() . " n'existe pas",
+                102
+            );
+        }
+        $this->delete($personna);
+        $this->create($personna);
     }
 
-    public function update(PersonnaModel $personna): void
+    /**
+     * @param PersonnaModel $personna
+     * @return void
+     * @throws PersonnaFileException
+     */
+    final public function delete(PersonnaModel $personna): void
     {
-
+        $file = $this->path. $personna->getUsername() . '.personna';
+        if (!file_exists($file)) {
+            throw new PersonnaFileException(
+                "Le personna " . $personna->getUsername() . " n'existe pas",
+                102
+            );
+        }
+        unlink($file);
     }
 
-    public function delete(PersonnaModel $personna): void
+    /**
+     * @return PersonnaModel[]
+     * @throws PersonnaFileException
+     */
+    final public function getAll(): array
     {
+        $personnas = [];
+        foreach(scandir($this->path) as $file) {
+            if (str_contains($file, '.personna')) {
+                try {
+                    $json = json_decode(
+                        file_get_contents($this->path . DIRECTORY_SEPARATOR . $file),
+                        false,
+                        512,
+                        JSON_THROW_ON_ERROR
+                    );
+                    $personna = new PersonnaModel();
+                    $personna->chargerDepuisJson($json);
+                    $personnas[] = $personna;// @codeCoverageIgnoreStart
+                } catch (\JsonException $ex) {
+                    throw new PersonnaFileException(
+                        "Le chargement d'un fichier personna " . $file . " a échoué",
+                        101
+                    );
+                }// @codeCoverageIgnoreStop
+            }
+        }
 
+        return $personnas;
     }
 }

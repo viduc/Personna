@@ -106,6 +106,7 @@ class PersonnaRepository
 
     /**
      * @return PersonnaModel[]
+     * @throws PersonnaFileException
      */
     final public function getAll(): array
     {

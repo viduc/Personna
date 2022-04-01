@@ -12,7 +12,7 @@ use Exception;
 
 /**
  * 100 -> Le personna <personna> existe  déjà
- * 101 -> Erreur JSON
+ * 101 -> Le chargement d'un fichier personna <file> a échoué
  * 102 -> le personna <personna> n'existe pas
  * 103 -> L'enregistrement du personna <personna> a échoué
  * 104 -> La suppression du personna <personna> a échouée

@@ -35,6 +35,7 @@ class Personna implements UseCaseInterface
      * @param RequeteInterface $requete
      * @param PresenterInterface $presenter
      * @return PresenterInterface
+     * @throws PersonnaRepositoryException
      */
     final public function execute(
         RequeteInterface $requete,
