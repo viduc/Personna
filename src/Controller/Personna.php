@@ -57,9 +57,16 @@ class Personna implements UseCaseInterface
                 break;
             case 'read':
                 $reponse = new ReponseCreate();
-                $reponse->setPersonnaModel(
-                    $this->repository->read($requete->getParam('id'))
-                );
+                try {
+                    $reponse->setPersonnaModel(
+                        $this->repository->read($requete->getParam('id'))
+                    );
+                } catch (PersonnaRepositoryException | PersonnaRequetesException $ex) {
+                    $reponse->setErreur(
+                        new ErreurModel($ex->getCode(), $ex->getMessage())
+                    );
+                }
+
                 $presenter->presente($reponse);
                 break;
             case 'update':

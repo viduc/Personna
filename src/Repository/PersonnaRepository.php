@@ -67,7 +67,7 @@ class PersonnaRepository
      * @return PersonnaModel
      * @throws PersonnaRepositoryException
      */
-    final public function read(int $id): PersonnaModel
+    public function read(int $id): PersonnaModel
     {
         foreach ($this->getAll() as $personna) {
             if ($personna->getId() === $id) {

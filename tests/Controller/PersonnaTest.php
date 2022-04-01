@@ -101,6 +101,64 @@ class PersonnaTest extends TestCase
      * @test
      * @return void
      */
+    final public function executeRead(): void
+    {
+        $this->requete->setAction('read');
+        $this->requete->setParam(['id' => 0]);
+        $this->repository->method('read')->willReturn(new PersonnaModel());
+        self::assertInstanceOf(
+            ReponseInterface::class,
+            $this->personna->execute($this->requete, $this->presenter)->reponse
+        );
+    }
+
+    /**
+     * @test
+     * @return void
+     */
+    final public function executeReadException(): void
+    {
+        $this->requete->setAction('read');
+        $this->requete->setParam(['id' =>0]);
+        $this->repository->method('read')->willThrowException(
+            new PersonnaRepositoryException('test', 100)
+        );
+        self::assertEquals(
+            'test',
+            $this->personna->execute(
+                $this->requete,
+                $this->presenter
+            )->reponse->getErreur()->getMessage()
+        );
+        self::assertEquals(
+            100,
+            $this->personna->execute(
+                $this->requete,
+                $this->presenter
+            )->reponse->getErreur()->getCode()
+        );
+
+        $this->requete->setParam([]);
+        self::assertEquals(
+            "Le paramètre id n'existe pas",
+            $this->personna->execute(
+                $this->requete,
+                $this->presenter
+            )->reponse->getErreur()->getMessage()
+        );
+        self::assertEquals(
+            100,
+            $this->personna->execute(
+                $this->requete,
+                $this->presenter
+            )->reponse->getErreur()->getCode()
+        );
+    }
+
+    /**
+     * @test
+     * @return void
+     */
     final public function executeTest(): void
     {
 
