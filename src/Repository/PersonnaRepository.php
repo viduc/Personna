@@ -24,13 +24,16 @@ class PersonnaRepository
     }
 
     /**
-     * @param array $ptions
+     * @param PersonnaModel|null $personna
+     * @param array $options
      * @return PersonnaModel
      * @throws PersonnaRepositoryException
      */
-    final public function create(array $ptions): PersonnaModel
-    {
-        $personna = new PersonnaModel($ptions);
+    final public function create(
+        PersonnaModel $personna = null,
+        array $options = []
+    ): PersonnaModel {
+        $personna = $personna ?? new PersonnaModel($options);
         $personna->setId($this->generateId());
         try {
             $this->file->create($personna);

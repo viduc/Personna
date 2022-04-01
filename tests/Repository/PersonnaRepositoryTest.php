@@ -36,7 +36,7 @@ class PersonnaRepositoryTest extends TestCase
      */
     final public function create(): void
     {
-        self::assertEquals(0, $this->repository->create([])->getId());
+        self::assertEquals(0, $this->repository->create(null, [])->getId());
     }
 
     /**
@@ -46,7 +46,7 @@ class PersonnaRepositoryTest extends TestCase
     final public function createException(): void
     {
         try {
-            $this->repository->create(['username' => 'testException']);
+            $this->repository->create(null, ['username' => 'testException']);
         } catch (PersonnaRepositoryException $ex) {
             self::assertEquals('test', $ex->getMessage());
             self::assertEquals(100, $ex->getCode());
