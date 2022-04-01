@@ -66,7 +66,6 @@ class Personna implements UseCaseInterface
                         new ErreurModel($ex->getCode(), $ex->getMessage())
                     );
                 }
-
                 $presenter->presente($reponse);
                 break;
             case 'update':
@@ -80,7 +79,6 @@ class Personna implements UseCaseInterface
                         new ErreurModel($ex->getCode(), $ex->getMessage())
                     );
                 }
-
                 $presenter->presente($reponse);
                 break;
             case 'delete':
