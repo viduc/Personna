@@ -5,13 +5,11 @@ env:
   global:
     - CC_TEST_REPORTER_ID=793930a7399b83ad2494e0452dce886c26c03c837147bb7564c357287d65a488
 before_script:
-  - travis_retry composer self-update
-  - travis_retry composer install --no-interaction --prefer-source --dev
-script:
-  - composer install
   - curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 > ./cc-test-reporter
   - chmod +x ./cc-test-reporter
-  - sudo mkdir -p $CIRCLE_TEST_REPORTS/phpunit
   - ./cc-test-reporter before-build
-  - sudo vendor/bin/phpunit --coverage-clover clover.xml
+script:
+  - composer install
+  - vendor/bin/phpunit --coverage-clover clover.xml
+after_script:
   - ./cc-test-reporter after-build -t clover --exit-code $?
