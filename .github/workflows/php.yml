@@ -32,12 +32,17 @@ jobs:
     - name: Install dependencies
       run: composer install --prefer-dist --no-progress
 
+    - name: Setup PHP with Xdebug
+      uses: shivammathur/setup-php@v2
+      with:
+        php-version: '8.0'
+        coverage: xdebug
+
     # Add a test script to composer.json, for instance: "test": "vendor/bin/phpunit"
     # Docs: https://getcomposer.org/doc/articles/scripts.md
 
     - name: Run test suite
-      #run: composer run-script test
-      run: php -n -dzend_extension=xdebug -dxdebug.mode=coverage ./vendor/bin/phpunit --coverage-clover clover.xml
+      run: composer run-script test
 
     - name: Upload coverage to Codecov
       uses: codecov/codecov-action@v1
