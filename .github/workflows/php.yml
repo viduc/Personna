@@ -36,7 +36,8 @@ jobs:
     # Docs: https://getcomposer.org/doc/articles/scripts.md
 
     - name: Run test suite
-      run: composer run-script test
+      #run: composer run-script test
+      php -n -dzend_extension=xdebug -dxdebug.mode=coverage ./vendor/bin/phpunit --coverage-clover clover.xml
 
     - name: Upload coverage to Codecov
       uses: codecov/codecov-action@v1
