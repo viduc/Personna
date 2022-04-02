@@ -15,10 +15,12 @@ use Viduc\Personna\Model\PersonnaModel;
 class File implements FileInterface
 {
     private string $path;
+    private PersonnaModel $personna;
 
     public function __construct(string $path)
     {
         $this->path = $path;
+        $this->personna = new PersonnaModel();
     }
 
     /**
@@ -93,25 +95,35 @@ class File implements FileInterface
         $personnas = [];
         foreach(scandir($this->path) as $file) {
             if (str_contains($file, '.personna')) {
-                try {
-                    $json = json_decode(
-                        file_get_contents($this->path . DIRECTORY_SEPARATOR . $file),
-                        false,
-                        512,
-                        JSON_THROW_ON_ERROR
-                    );
-                    $personna = new PersonnaModel();
-                    $personna->chargerDepuisJson($json);
-                    $personnas[] = $personna;// @codeCoverageIgnoreStart
-                } catch (\JsonException $ex) {
-                    throw new PersonnaFileException(
-                        "Le chargement d'un fichier personna " . $file . " a échoué",
-                        101
-                    );
-                }// @codeCoverageIgnoreStop
+                $this->chergerPersonna($file);
+                $personnas[] = $this->personna;
             }
         }
 
         return $personnas;
+    }
+
+    /**
+     * @param string $file
+     * @return PersonnaModel
+     * @throws PersonnaFileException
+     */
+    private function chergerPersonna(string $file): void
+    {
+        try {
+            $json = json_decode(
+                file_get_contents($this->path . DIRECTORY_SEPARATOR . $file),
+                false,
+                512,
+                JSON_THROW_ON_ERROR
+            );
+            $this->personna->chargerDepuisJson($json);
+        // @codeCoverageIgnoreStart
+        } catch (\JsonException $ex) {
+            throw new PersonnaFileException(
+                "Le chargement d'un fichier personna " . $file . " a échoué",
+                101
+            );
+        }// @codeCoverageIgnoreStop
     }
 }
