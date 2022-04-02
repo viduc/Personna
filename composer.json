@@ -25,5 +25,10 @@
   },
   "autoload-dev": {
     "psr-4": { "Viduc\\Personna\\Tests\\": "tests/" }
+  },
+  "scripts": {
+    "test": [
+      "phpunit --coverage-clover clover.xml"
+    ]
   }
 }
