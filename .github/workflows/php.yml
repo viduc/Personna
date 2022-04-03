@@ -48,6 +48,6 @@ jobs:
       uses: codecov/codecov-action@v1
 
     - name: Upload coverage to Codeclimate
-        uses: paambaati/codeclimate-action@v3.0.0
-        env:
-          CC_TEST_REPORTER_ID: 793930a7399b83ad2494e0452dce886c26c03c837147bb7564c357287d65a488
+      uses: paambaati/codeclimate-action@v3.0.0
+      env:
+        CC_TEST_REPORTER_ID: 793930a7399b83ad2494e0452dce886c26c03c837147bb7564c357287d65a488
