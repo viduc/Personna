@@ -7,20 +7,32 @@ declare(strict_types=1);
 /** Licence: Apache 2.0                                                      **/
 /******************************************************************************/
 
-namespace Viduc\Personna\Interfaces\Reponses;
+namespace Viduc\Personna\Reponses;
 
+use Viduc\Personna\Interfaces\Reponses\ReponseInterface;
 use Viduc\Personna\Model\ErreurModel;
 
-interface ReponseInterface
+class Reponse implements ReponseInterface
 {
+    /**
+     * @var ErreurModel
+     */
+    private ErreurModel $erreur;
+
     /**
      * @param ErreurModel $erreur
      * @return void
      */
-    public function setErreur(ErreurModel $erreur): void;
+    final public function setErreur(ErreurModel $erreur): void
+    {
+        $this->erreur = $erreur;
+    }
 
     /**
      * @return ErreurModel
      */
-    public function getErreur(): ErreurModel;
+    final public function getErreur(): ErreurModel
+    {
+        return $this->erreur;
+    }
 }

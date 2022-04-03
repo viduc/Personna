@@ -9,32 +9,30 @@ declare(strict_types=1);
 
 namespace Viduc\Personna\Reponses;
 
-use Viduc\Personna\Interfaces\Reponses\ReponseInterface;
-use Viduc\Personna\Model\ErreurModel;
+use Viduc\Personna\Interfaces\Reponses\ReponsePersonnaInterface;
 use Viduc\Personna\Model\PersonnaModel;
 
-class ReponseCreate implements ReponseInterface
+class ReponsePersonna extends Reponse implements ReponsePersonnaInterface
 {
+    /**
+     * @var PersonnaModel
+     */
     private PersonnaModel $personna;
-    private ErreurModel $erreur;
 
+    /**
+     * @param PersonnaModel $personna
+     * @return void
+     */
     final public function setPersonnaModel(PersonnaModel $personna): void
     {
         $this->personna = $personna;
     }
 
+    /**
+     * @return PersonnaModel
+     */
     final public function getPersonnaModel(): PersonnaModel
     {
         return $this->personna;
-    }
-
-    final public function setErreur(ErreurModel $erreur): void
-    {
-        $this->erreur = $erreur;
-    }
-
-    final public function getErreur(): ErreurModel
-    {
-        return $this->erreur;
     }
 }

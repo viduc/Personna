@@ -17,9 +17,12 @@ use Viduc\Personna\Interfaces\Controller\UseCaseInterface;
 use Viduc\Personna\Interfaces\File\FileInterface;
 use Viduc\Personna\Interfaces\Presenters\PresenterInterface;
 use Viduc\Personna\Interfaces\Reponses\ReponseInterface;
+use Viduc\Personna\Interfaces\Reponses\ReponsePersonnaInterface;
 use Viduc\Personna\Interfaces\Requetes\RequeteInterface;
 use Viduc\Personna\Model\ErreurModel;
+use Viduc\Personna\Reponses\Reponse;
 use Viduc\Personna\Reponses\ReponseCreate;
+use Viduc\Personna\Reponses\ReponsePersonna;
 use Viduc\Personna\Repository\PersonnaRepository;
 
 class Personna implements UseCaseInterface
@@ -50,19 +53,19 @@ class Personna implements UseCaseInterface
         $this->requete = $requete;
         switch ($requete->getAction()) {
             case 'create':
-                $this->reponse = new ReponseCreate();
+                $this->reponse = new ReponsePersonna();
                 $this->reponsePersonna('create', 'personna');
                 break;
             case 'read':
-                $this->reponse = new ReponseCreate();
+                $this->reponse = new ReponsePersonna();
                 $this->reponsePersonna('read', 'id');
                 break;
             case 'update':
-                $this->reponse = new ReponseCreate();
+                $this->reponse = new ReponsePersonna();
                 $this->reponsePersonna('update', 'personna');
                 break;
             case 'delete':
-                $this->reponse = new ReponseCreate();
+                $this->reponse = new Reponse();
                 $this->reponseVoid('delete', 'personna');
                 break;
         }

@@ -9,18 +9,18 @@ declare(strict_types=1);
 
 namespace Viduc\Personna\Interfaces\Reponses;
 
-use Viduc\Personna\Model\ErreurModel;
+use Viduc\Personna\Model\PersonnaModel;
 
-interface ReponseInterface
+interface ReponsePersonnaInterface
 {
     /**
-     * @param ErreurModel $erreur
+     * @param PersonnaModel $personna
      * @return void
      */
-    public function setErreur(ErreurModel $erreur): void;
+    public function setPersonnaModel(PersonnaModel $personna): void;
 
     /**
-     * @return ErreurModel
+     * @return PersonnaModel
      */
-    public function getErreur(): ErreurModel;
+    public function getPersonnaModel(): PersonnaModel;
 }
