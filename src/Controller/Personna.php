@@ -63,13 +63,7 @@ class Personna implements UseCaseInterface
                 break;
             case 'delete':
                 $this->reponse = new ReponseCreate();
-                try {
-                    $this->repository->delete($requete->getParam('personna'));
-                } catch (PersonnaRepositoryException | PersonnaRequetesException $ex) {
-                    $this->reponse->setErreur(
-                        new ErreurModel($ex->getCode(), $ex->getMessage())
-                    );
-                }
+                $this->reponseVoid('delete', 'personna');
                 break;
         }
         $presenter->presente($this->reponse);
@@ -88,6 +82,22 @@ class Personna implements UseCaseInterface
             $this->reponse->setPersonnaModel($this->repository->$action(
                 $this->requete->getParam($param)
             ));
+        } catch (PersonnaRepositoryException | PersonnaRequetesException $ex) {
+            $this->reponse->setErreur(
+                new ErreurModel($ex->getCode(), $ex->getMessage())
+            );
+        }
+    }
+
+    /**
+     * @param string $action
+     * @param string $param
+     * @return void
+     */
+    private function reponseVoid(string $action, string $param): void
+    {
+        try {
+            $this->repository->delete($this->requete->getParam('personna'));
         } catch (PersonnaRepositoryException | PersonnaRequetesException $ex) {
             $this->reponse->setErreur(
                 new ErreurModel($ex->getCode(), $ex->getMessage())
