@@ -11,6 +11,9 @@ namespace Viduc\Personna\Interfaces\Presenters;
 
 use Viduc\Personna\Interfaces\Reponses\ReponseInterface;
 
+/**
+ * @codeCoverageIgnore
+ */
 interface PresenterInterface
 {
     public function presente(ReponseInterface $reponse): void;

@@ -12,6 +12,10 @@ namespace Viduc\Personna\Interfaces\Controller;
 use Viduc\Personna\Interfaces\Presenters\PresenterInterface;
 use Viduc\Personna\Interfaces\Requetes\RequeteInterface;
 
+/**
+ * @codeCoverageIgnore
+ *
+ */
 interface UseCaseInterface
 {
     public function execute(

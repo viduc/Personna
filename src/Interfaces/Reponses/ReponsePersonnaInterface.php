@@ -11,6 +11,9 @@ namespace Viduc\Personna\Interfaces\Reponses;
 
 use Viduc\Personna\Model\PersonnaModel;
 
+/**
+ * @codeCoverageIgnore
+ */
 interface ReponsePersonnaInterface
 {
     /**

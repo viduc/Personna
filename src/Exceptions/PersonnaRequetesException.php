@@ -11,6 +11,7 @@ namespace Viduc\Personna\Exceptions;
 use Exception;
 
 /**
+ * @codeCoverageIgnore
  * 100 -> Le paramètre <param>> n'existe pas
  */
 class PersonnaRequetesException extends Exception

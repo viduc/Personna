@@ -11,6 +11,9 @@ namespace Viduc\Personna\Interfaces\Requetes;
 
 use Viduc\Personna\Exceptions\PersonnaRequetesException;
 
+/**
+ * @codeCoverageIgnore
+ */
 interface RequeteInterface
 {
     /**

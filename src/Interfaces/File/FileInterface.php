@@ -12,6 +12,9 @@ namespace Viduc\Personna\Interfaces\File;
 use Viduc\Personna\Exceptions\PersonnaFileException;
 use Viduc\Personna\Model\PersonnaModel;
 
+/**
+ * @codeCoverageIgnore
+ */
 interface FileInterface
 {
     /**

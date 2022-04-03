@@ -11,6 +11,7 @@ namespace Viduc\Personna\Exceptions;
 use Exception;
 
 /**
+ * @codeCoverageIgnore
  * 100 -> Le personna <personna> existe  déjà
  * 101 -> Le chargement d'un fichier personna <file> a échoué
  * 102 -> le personna <personna> n'existe pas
