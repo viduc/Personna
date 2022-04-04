@@ -7,40 +7,39 @@ declare(strict_types=1);
 /** Licence: Apache 2.0                                                      **/
 /******************************************************************************/
 
-namespace Viduc\Personna\Reponses;
+namespace Viduc\Personna\Tests\Reponses;
 
-use Viduc\Personna\Interfaces\Reponses\ReponseInterface;
+use PHPUnit\Framework\TestCase;
 use Viduc\Personna\Model\ErreurModel;
+use Viduc\Personna\Reponses\Reponse;
 
-class Reponse implements ReponseInterface
+class ReponseTest extends TestCase
 {
-    /**
-     * @var ErreurModel
-     */
-    private ErreurModel $erreur;
-
-    /**
-     * @param ErreurModel|null $erreur
-     */
-    public function __construct(ErreurModel $erreur = null)
+    private Reponse $reponse;
+    final public function setUp(): void
     {
-        $this->erreur = $erreur ?? new ErreurModel();
+        parent::setUp();
+        $this->reponse = new Reponse();
     }
 
     /**
-     * @param ErreurModel $erreur
+     * @test
      * @return void
      */
-    final public function setErreur(ErreurModel $erreur): void
+    final public function setErreur(): void
     {
-        $this->erreur = $erreur;
+        self::assertNull($this->reponse->setErreur(new ErreurModel()));
     }
 
     /**
-     * @return ErreurModel
+     * @test
+     * @return void
      */
-    final public function getErreur(): ErreurModel
+    final public function getErreur(): void
     {
-        return $this->erreur;
+        self::assertInstanceOf(
+            ErreurModel::class,
+            $this->reponse->getErreur()
+        );
     }
 }
