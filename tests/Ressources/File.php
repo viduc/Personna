@@ -79,7 +79,7 @@ class File implements FileInterface
     final public function getAll(): array
     {
         if (!$this->getAllExecption) {
-            return [new PersonnaModel(['id'=>666])];
+            return [new PersonnaModel(['id'=>0]), new PersonnaModel(['id'=>666])];
         }
         throw new PersonnaFileException(
             "Le chargement d'un fichier personna test a échoué",

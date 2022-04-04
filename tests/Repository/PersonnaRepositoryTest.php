@@ -9,9 +9,7 @@ declare(strict_types=1);
 
 namespace Viduc\Personna\Tests\Repository;
 
-use Doctrine\ORM\Exception\RepositoryException;
 use PHPUnit\Framework\TestCase;
-use Viduc\Personna\Exceptions\PersonnaFileException;
 use Viduc\Personna\Exceptions\PersonnaRepositoryException;
 use Viduc\Personna\Model\PersonnaModel;
 use Viduc\Personna\Repository\PersonnaRepository;
@@ -36,7 +34,7 @@ class PersonnaRepositoryTest extends TestCase
      */
     final public function create(): void
     {
-        self::assertEquals(0, $this->repository->create(null, [])->getId());
+        self::assertEquals(1, $this->repository->create(null, [])->getId());
     }
 
     /**
