@@ -19,6 +19,11 @@ class ReponsePersonna extends Reponse implements ReponsePersonnaInterface
      */
     private PersonnaModel $personna;
 
+    public function __construct(PersonnaModel $personna = null)
+    {
+        $this->personna = $personna ?? new PersonnaModel();
+    }
+
     /**
      * @param PersonnaModel $personna
      * @return void
