@@ -114,7 +114,7 @@ class PersonnaModel
     /**
      * @return bool
      */
-    final function isActive(): bool
+    final public function isActive(): bool
     {
         return $this->isActive;
     }
