@@ -9,6 +9,44 @@ declare(strict_types=1);
 
 namespace Viduc\Personna\Model;
 
+use Prophecy\Exception\Doubler\MethodNotFoundException;
+
+/**
+ * @method int getId()
+ * @method self setId(int $id)
+ * @method string getUsername()
+ * @method self setUsername(string $username)
+ * @method string getPrenom()
+ * @method self setPrenom(string $prenom)
+ * @method string getNom()
+ * @method self setNom(string $nom)
+ * @method int getAge()
+ * @method self setAge(int $age)
+ * @method string getLieu()
+ * @method self setLieu(string $lieu)
+ * @method int getAisanceNumerique()
+ * @method self setAisanceNumerique(int $aisanceNumerique)
+ * @method int getExpertiseDomaine()
+ * @method self setExpertiseDomaine(int $expertiseDomaine)
+ * @method int getFrequenceUsage()
+ * @method self setFrequenceUsage(int $frequenceUsage)
+ * @method string getMetier()
+ * @method self setMetier(string $meier)
+ * @method string getCitation()
+ * @method self setCitation(string $citation)
+ * @method string getHistoire()
+ * @method self setHistoire(string $histoire)
+ * @method string getButs()
+ * @method self setButs(string $buts)
+ * @method string getPersonnalite()
+ * @method self setPersonnalite(string $buts)
+ * @method string getUrlPhoto()
+ * @method self setUrlPhoto(string $buts)
+ * @method array getRoles()
+ * @method self setRoles(array $roles)
+ * @method bool getIsActive()
+ * @method self setIsActive(bool $isActive)
+ */
 class PersonnaModel
 {
     private int $id;
@@ -26,7 +64,7 @@ class PersonnaModel
     private string $buts;
     private string $personnalite;
     private string $urlPhoto;
-    private array $roles = [];
+    private array $roles;
     private bool $isActive;
 
     public function __construct(array $options = null) {
@@ -50,345 +88,33 @@ class PersonnaModel
     }
 
     /**
-     * @return int
+     * @param string $name
+     * @param array $arguments
+     * @return mixed
      */
-    final public function getId(): int
+    final public function __call(string $name, array $arguments): mixed
     {
-        return $this->id;
-    }
-
-    /**
-     * @param int $id
-     * @return $this
-     */
-    final public function setId(int $id): self
-    {
-        $this->id = $id;
-
-        return $this;
-    }
-
-    /**
-     * @return string
-     */
-    final public function getUsername(): string
-    {
-        return $this->username;
-    }
-
-    /**
-     * @param string $username
-     * @return $this
-     */
-    final public function setUsername(string $username): self
-    {
-        $this->username = $username;
-
-        return $this;
-    }
-
-    /**
-     * @return string
-     */
-    final public function getPrenom(): string
-    {
-        return $this->prenom;
-    }
-
-    /**
-     * @param string $prenom
-     * @return $this
-     */
-    final public function setPrenom(string $prenom): self
-    {
-        $this->prenom = $prenom;
-
-        return $this;
-    }
-
-    /**
-     * @return string
-     */
-    final public function getNom(): string
-    {
-        return $this->nom;
-    }
-
-    /**
-     * @param string $nom
-     * @return $this
-     */
-    final public function setNom(string $nom): self
-    {
-        $this->nom = $nom;
-
-        return $this;
-    }
-
-    /**
-     * @return int
-     */
-    final public function getAge(): int
-    {
-        return $this->age;
-    }
-
-    /**
-     * @param int $age
-     * @return $this
-     */
-    final public function setAge(int $age): self
-    {
-        $this->age = $age;
-
-        return $this;
-    }
-
-    /**
-     * @return string
-     */
-    final public function getLieu(): string
-    {
-        return $this->lieu;
-    }
-
-    /**
-     * @param string $lieu
-     * @return $this
-     */
-    final public function setLieu(string $lieu): self
-    {
-        $this->lieu = $lieu;
-
-        return $this;
-    }
-
-    /**
-     * @return int
-     */
-    final public function getAisanceNumerique(): int
-    {
-        return $this->aisanceNumerique;
-    }
-
-    /**
-     * @param int $aisanceNumerique
-     * @return $this
-     */
-    final public function setAisanceNumerique(int $aisanceNumerique): self
-    {
-        $this->aisanceNumerique = $aisanceNumerique;
-
-        return $this;
-    }
-
-    /**
-     * @return int
-     */
-    final public function getExpertiseDomaine(): int
-    {
-        return $this->expertiseDomaine;
-    }
-
-    /**
-     * @param int $expertiseDomaine
-     * @return $this
-     */
-    final public function setExpertiseDomaine(int $expertiseDomaine): self
-    {
-        $this->expertiseDomaine = $expertiseDomaine;
-
-        return $this;
-    }
-
-    /**
-     * @return int
-     */
-    final public function getFrequenceUsage(): int
-    {
-        return $this->frequenceUsage;
-    }
-
-    /**
-     * @param int $frequenceUsage
-     * @return $this
-     */
-    final public function setFrequenceUsage(int $frequenceUsage): self
-    {
-        $this->frequenceUsage = $frequenceUsage;
-
-        return $this;
-    }
-
-    /**
-     * @return string
-     */
-    final public function getMetier(): string
-    {
-        return $this->metier;
-    }
-
-    /**
-     * @param string $metier
-     * @return $this
-     */
-    final public function setMetier(string $metier): self
-    {
-        $this->metier = $metier;
-
-        return $this;
-    }
-
-    /**
-     * @return string
-     */
-    final public function getCitation(): string
-    {
-        return $this->citation;
-    }
-
-    /**
-     * @param string $citation
-     * @return $this
-     */
-    final public function setCitation(string $citation): self
-    {
-        $this->citation = $citation;
-
-        return $this;
-    }
-
-    /**
-     * @return string
-     */
-    final public function getHistoire(): string
-    {
-        return $this->histoire;
-    }
-
-    /**
-     * @param string $histoire
-     * @return $this
-     */
-    final public function setHistoire(string $histoire): self
-    {
-        $this->histoire = $histoire;
-
-        return $this;
-    }
-
-    /**
-     * @return string
-     */
-    final public function getButs(): string
-    {
-        return $this->buts;
-    }
-
-    /**
-     * @param string $buts
-     * @return $this
-     */
-    final public function setButs(string $buts): self
-    {
-        $this->buts = $buts;
-
-        return $this;
-    }
-
-    /**
-     * @return string
-     */
-    final public function getPersonnalite(): string
-    {
-        return $this->personnalite;
-    }
-
-    /**
-     * @param string $personnalite
-     * @return $this
-     */
-    final public function setPersonnalite(string $personnalite): self
-    {
-        $this->personnalite = $personnalite;
-
-        return $this;
-    }
-
-    /**
-     * @return string
-     */
-    final public function getUrlPhoto(): string
-    {
-        return $this->urlPhoto;
-    }
-
-    /**
-     * @param string $urlPhoto
-     * @return $this
-     */
-    final public function setUrlPhoto(string $urlPhoto): self
-    {
-        $this->urlPhoto = $urlPhoto;
-
-        return $this;
-    }
-
-    /**
-     * @return string[]
-     */
-    final public function getRoles() : array {
-        if (empty($this->roles)) {
-            return ['ROLE_USER'];
+        $property = lcfirst(str_replace(['get', 'set'], '', $name));
+        if (isset($this->$property)) {
+            if (str_contains($name, 'get')) {
+                return $this->$property;
+            }
+            if (str_contains($name, 'set')) {
+                $this->$property = $arguments[0];
+                return $this;
+            }
         }
-        return $this->roles;
-    }
-
-    /**
-     * @param string $role
-     * @return $this
-     */
-    final function addRole(string $role): self
-    {
-        $this->roles[] = $role;
-
-        return $this;
-    }
-
-    /**
-     * @param array $role
-     * @return $this
-     */
-    final function setRoles(array $role): self
-    {
-        $this->roles = $role;
-
-        return $this;
-    }
-
-    /**
-     * @param bool $isActive
-     * @return $this
-     */
-    final function setIsActive(bool $isActive): self
-    {
-        $this->isActive = $isActive;
-
-        return $this;
+        throw new MethodNotFoundException(
+            "La méthode n'est pas disponible",
+            PersonnaModel::class,
+            $name,
+        );
     }
 
     /**
      * @return bool
      */
     final function isActive(): bool
-    {
-        return $this->isActive;
-    }
-
-    /**
-     * @return bool
-     */
-    final function getIsActive(): bool
     {
         return $this->isActive;
     }

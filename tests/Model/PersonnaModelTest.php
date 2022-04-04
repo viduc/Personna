@@ -10,6 +10,7 @@ declare(strict_types=1);
 namespace Viduc\Personna\Tests\Model;
 
 use PHPUnit\Framework\TestCase;
+use Prophecy\Exception\Doubler\MethodNotFoundException;
 use Viduc\Personna\Model\PersonnaModel;
 
 class PersonnaModelTest extends TestCase
@@ -71,6 +72,23 @@ class PersonnaModelTest extends TestCase
         $json->roles = 'ROLE_USER';
         $personna->chargerDepuisJson($json);
         $this->validerModel($this->genererModelStandard(), $personna);
+    }
+
+    /**
+     * @test
+     * @return void
+     */
+    final public function methodNotAllow(): void
+    {
+        try {
+            $personna = new PersonnaModel();
+            $personna->getTest();
+        } catch (MethodNotFoundException $ex) {
+            self::assertEquals(
+                "La méthode n'est pas disponible",
+                $ex->getMessage()
+            );
+        }
     }
 
     /**
