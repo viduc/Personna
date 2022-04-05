@@ -15,29 +15,39 @@ use Viduc\Personna\Model\PersonnaModel;
 class ReponsePersonna extends Reponse implements ReponsePersonnaInterface
 {
     /**
-     * @var PersonnaModel
+     * @var PersonnaModel[]
      */
-    private PersonnaModel $personna;
+    private array $personnas;
 
-    public function __construct(PersonnaModel $personna = null)
+    public function __construct(array $personnas = null)
     {
-        $this->personna = $personna ?? new PersonnaModel();
+        parent::__construct();
+        $this->personnas = $personnas ?? [];
     }
 
     /**
-     * @param PersonnaModel $personna
+     * @param PersonnaModel[] $personnas
      * @return void
      */
-    final public function setPersonnaModel(PersonnaModel $personna): void
+    final public function setPersonnas(array $personnas): void
     {
-        $this->personna = $personna;
+        $this->personnas = $personnas;
     }
 
     /**
-     * @return PersonnaModel
+     * @return PersonnaModel[]
      */
-    final public function getPersonnaModel(): PersonnaModel
+    final public function getPersonnas(): array
     {
-        return $this->personna;
+        return $this->personnas;
+    }
+
+    /**
+     * @param PersonnaModel $personnaModel
+     * @return void
+     */
+    final public function addPersonna(PersonnaModel $personnaModel): void
+    {
+        $this->personnas[] = $personnaModel;
     }
 }

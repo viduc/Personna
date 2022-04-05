@@ -23,6 +23,7 @@ use Viduc\Personna\Model\ErreurModel;
 use Viduc\Personna\Reponses\Reponse;
 use Viduc\Personna\Reponses\ReponseCreate;
 use Viduc\Personna\Reponses\ReponsePersonna;
+use Viduc\Personna\Reponses\ReponsePersonnas;
 use Viduc\Personna\Repository\PersonnaRepository;
 
 class Personna implements UseCaseInterface
@@ -68,6 +69,10 @@ class Personna implements UseCaseInterface
                 $this->reponse = new Reponse();
                 $this->reponseVoid('delete', 'personna');
                 break;
+            case 'getAll':
+                $this->reponse = new ReponsePersonna();
+                $this->reponsePersonna('getAll', 'personna');
+                break;
         }
         $presenter->presente($this->reponse);
 
@@ -82,9 +87,12 @@ class Personna implements UseCaseInterface
     private function reponsePersonna(string $action, string $param): void
     {
         try {
-            $this->reponse->setPersonnaModel($this->repository->$action(
-                $this->requete->getParam($param)
-            ));
+            $personnas = $param !== '' ?
+                $this->repository->$action($this->requete->getParam($param)) :
+                $this->repository->$action();
+
+            $personnas = !is_array($personnas) ? [$personnas] : $personnas;
+            $this->reponse->setPersonnas($personnas);
         } catch (PersonnaRepositoryException | PersonnaRequetesException $ex) {
             $this->reponse->setErreur(
                 new ErreurModel($ex->getCode(), $ex->getMessage())

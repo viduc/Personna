@@ -17,13 +17,19 @@ use Viduc\Personna\Model\PersonnaModel;
 interface ReponsePersonnaInterface
 {
     /**
-     * @param PersonnaModel $personna
+     * @param PersonnaModel[] $personnas
      * @return void
      */
-    public function setPersonnaModel(PersonnaModel $personna): void;
+    public function setPersonnas(array $personnas): void;
 
     /**
-     * @return PersonnaModel
+     * @return PersonnaModel[]
      */
-    public function getPersonnaModel(): PersonnaModel;
+    public function getPersonnas(): array;
+
+    /**
+     * @param PersonnaModel $personnaModel
+     * @return void
+     */
+    public function addPersonna(PersonnaModel $personnaModel): void;
 }
