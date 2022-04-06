@@ -37,7 +37,7 @@ class Personna implements UseCaseInterface
 
     public function __construct(string $path)
     {
-        $this->repository = new PersonnaRepository(new File($path, new Folder()));
+        $this->repository = new PersonnaRepository(new File($path));
     }
 
     /**
