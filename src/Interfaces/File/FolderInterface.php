@@ -6,20 +6,20 @@ declare(strict_types=1);
 /** github: https://github.com/viduc/personna                                **/
 /** Licence: Apache 2.0                                                      **/
 /******************************************************************************/
-namespace Viduc\Personna\Exceptions;
 
-use Exception;
+namespace Viduc\Personna\Interfaces\File;
 
-/**
- * @codeCoverageIgnore
- * 100 -> Le personna <personna> existe  déjà
- * 101 -> Le chargement d'un fichier personna <file> a échoué
- * 102 -> le personna <personna> n'existe pas
- * 103 -> L'enregistrement du personna <personna> a échoué
- * 104 -> La suppression du personna <personna> a échouée
- * 105 -> Le dossier n'a pas pu être créé
- */
-class PersonnaFileException extends Exception
+interface FolderInterface
 {
+    /**
+     * @param string $path
+     * @return bool
+     */
+    public function exist(string $path): bool;
 
+    /**
+     * @param string $path
+     * @return void
+     */
+    public function create(string $path): void;
 }
