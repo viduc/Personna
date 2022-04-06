@@ -16,5 +16,15 @@ use Viduc\Personna\Interfaces\Reponses\ReponseInterface;
  */
 interface PresenterInterface
 {
+    /**
+     * @param ReponseInterface $reponse
+     * @return void
+     */
     public function presente(ReponseInterface $reponse): void;
+
+    /**
+     * @codeCoverageIgnore
+     * @return ReponseInterface
+     */
+    public function getReponse(): ReponseInterface;
 }

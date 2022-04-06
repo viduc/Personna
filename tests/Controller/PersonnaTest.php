@@ -17,6 +17,7 @@ use Viduc\Personna\Interfaces\Presenters\PresenterInterface;
 use Viduc\Personna\Interfaces\Reponses\ReponseInterface;
 use Viduc\Personna\Interfaces\Requetes\RequeteInterface;
 use Viduc\Personna\Model\PersonnaModel;
+use Viduc\Personna\Reponses\Reponse;
 use Viduc\Personna\Repository\PersonnaRepository;
 use Viduc\Personna\Tests\Ressources\File;
 use Viduc\Personna\Tests\Ressources\PersonnaRequete;
@@ -283,6 +284,11 @@ class Presenter implements PresenterInterface
     final public function reinitialize(): void
     {
         $this->reponse = null;
+    }
+
+    final public function getReponse(): ReponseInterface
+    {
+        return new Reponse();
     }
 }
 
