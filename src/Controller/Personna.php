@@ -17,13 +17,10 @@ use Viduc\Personna\Interfaces\Controller\UseCaseInterface;
 use Viduc\Personna\Interfaces\File\FileInterface;
 use Viduc\Personna\Interfaces\Presenters\PresenterInterface;
 use Viduc\Personna\Interfaces\Reponses\ReponseInterface;
-use Viduc\Personna\Interfaces\Reponses\ReponsePersonnaInterface;
 use Viduc\Personna\Interfaces\Requetes\RequeteInterface;
 use Viduc\Personna\Model\ErreurModel;
 use Viduc\Personna\Reponses\Reponse;
-use Viduc\Personna\Reponses\ReponseCreate;
 use Viduc\Personna\Reponses\ReponsePersonna;
-use Viduc\Personna\Reponses\ReponsePersonnas;
 use Viduc\Personna\Repository\PersonnaRepository;
 
 class Personna implements UseCaseInterface
