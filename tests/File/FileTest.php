@@ -11,6 +11,7 @@ namespace Viduc\Personna\Tests\File;
 use PHPUnit\Framework\TestCase;
 use Viduc\Personna\Exceptions\PersonnaFileException;
 use Viduc\Personna\File\File;
+use Viduc\Personna\File\Folder;
 use Viduc\Personna\Model\PersonnaModel;
 
 class FileTest extends TestCase
@@ -22,7 +23,9 @@ class FileTest extends TestCase
     {
         parent::setUp();
         $this->path = str_ireplace('File', 'Ressources/', __DIR__);
-        $this->file = new File($this->path);
+        $folder = $this->createMock(Folder::class);
+        $folder->method('create')->willReturnSelf();
+        $this->file = new File($this->path, $folder);
         $this->nettoyerFichiersJson();
     }
 

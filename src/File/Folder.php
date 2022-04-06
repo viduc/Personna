@@ -26,7 +26,7 @@ class Folder implements FolderInterface
     /**
      * @inheritDoc
      */
-    final public function create(string $path): void
+    public function create(string $path): void
     {
         if (is_dir($path)) {
             return;

@@ -10,6 +10,7 @@ namespace Viduc\Personna\File;
 
 use Viduc\Personna\Exceptions\PersonnaFileException;
 use Viduc\Personna\Interfaces\File\FileInterface;
+use Viduc\Personna\Interfaces\File\FolderInterface;
 use Viduc\Personna\Model\PersonnaModel;
 
 class File implements FileInterface
@@ -17,10 +18,11 @@ class File implements FileInterface
     private string $path;
     private PersonnaModel $personna;
 
-    public function __construct(string $path)
+    public function __construct(string $path, FolderInterface $folder)
     {
         $this->path = $path;
         $this->personna = new PersonnaModel();
+        $folder->create($path);
     }
 
     /**

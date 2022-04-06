@@ -13,6 +13,7 @@ use SebastianBergmann\CodeCoverage\Report\Xml\Node;
 use Viduc\Personna\Exceptions\PersonnaRepositoryException;
 use Viduc\Personna\Exceptions\PersonnaRequetesException;
 use Viduc\Personna\File\File;
+use Viduc\Personna\File\Folder;
 use Viduc\Personna\Interfaces\Controller\UseCaseInterface;
 use Viduc\Personna\Interfaces\File\FileInterface;
 use Viduc\Personna\Interfaces\Presenters\PresenterInterface;
@@ -36,7 +37,7 @@ class Personna implements UseCaseInterface
 
     public function __construct(string $path)
     {
-        $this->repository = new PersonnaRepository(new File($path));
+        $this->repository = new PersonnaRepository(new File($path, new Folder()));
     }
 
     /**
