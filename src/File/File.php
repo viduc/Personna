@@ -18,10 +18,11 @@ class File implements FileInterface
     private string $path;
     private PersonnaModel $personna;
 
-    public function __construct(string $path, FolderInterface $folder)
+    public function __construct(string $path, FolderInterface $folder = null)
     {
         $this->path = $path;
         $this->personna = new PersonnaModel();
+        $folder = $folder ?? new Folder();
         $folder->create($path);
     }
 
