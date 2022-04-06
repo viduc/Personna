@@ -68,7 +68,7 @@ class Personna implements UseCaseInterface
                 break;
             case 'getAll':
                 $this->reponse = new ReponsePersonna();
-                $this->reponsePersonna('getAll', 'personna');
+                $this->reponsePersonna('getAll', '');
                 break;
         }
         $presenter->presente($this->reponse);
