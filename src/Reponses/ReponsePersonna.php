@@ -37,7 +37,7 @@ class ReponsePersonna extends Reponse implements ReponsePersonnaInterface
     /**
      * @return PersonnaModel[]
      */
-    final public function getPersonnas(): array
+    public function getPersonnas(): array
     {
         return $this->personnas;
     }
