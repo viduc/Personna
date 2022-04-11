@@ -9,11 +9,9 @@ declare(strict_types=1);
 
 namespace Viduc\Personna\Controller;
 
-use SebastianBergmann\CodeCoverage\Report\Xml\Node;
 use Viduc\Personna\Exceptions\PersonnaRepositoryException;
 use Viduc\Personna\Exceptions\PersonnaRequetesException;
 use Viduc\Personna\File\File;
-use Viduc\Personna\File\Folder;
 use Viduc\Personna\Interfaces\Controller\UseCaseInterface;
 use Viduc\Personna\Interfaces\File\FileInterface;
 use Viduc\Personna\Interfaces\Presenters\PresenterInterface;
