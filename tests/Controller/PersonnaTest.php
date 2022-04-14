@@ -271,6 +271,46 @@ class PersonnaTest extends TestCase
             )->reponse->getErreur()->getCode()
         );
     }
+
+    /**
+     * @test
+     * @return void
+     */
+    final public function getAll(): void
+    {
+        $this->requete->setAction('getAll');
+        $this->repository->method('getAll')->willReturn([new PersonnaModel()]);
+        self::assertInstanceOf(
+            ReponseInterface::class,
+            $this->personna->execute($this->requete, $this->presenter)->reponse
+        );
+    }
+
+    /**
+     * @test
+     * @return void
+     */
+    final public function executeGetAllException(): void
+    {
+        $this->requete->setAction('getAll');
+        $this->repository->method('getAll')->willThrowException(
+            new PersonnaRepositoryException('test', 100)
+        );
+        self::assertEquals(
+            'test',
+            $this->personna->execute(
+                $this->requete,
+                $this->presenter
+            )->reponse->getErreur()->getMessage()
+        );
+        self::assertEquals(
+            100,
+            $this->personna->execute(
+                $this->requete,
+                $this->presenter
+            )->reponse->getErreur()->getCode()
+        );
+    }
 }
 
 class Presenter implements PresenterInterface

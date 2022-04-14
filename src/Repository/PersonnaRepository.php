@@ -112,7 +112,7 @@ class PersonnaRepository
      * @return PersonnaModel[]
      * @throws PersonnaRepositoryException
      */
-    final public function getAll(): array
+    public function getAll(): array
     {
         try {
             return $this->file->getAll();

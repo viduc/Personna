@@ -48,28 +48,15 @@ class Personna implements UseCaseInterface
         PresenterInterface $presenter
     ): PresenterInterface {
         $this->requete = $requete;
-        switch ($requete->getAction()) {
-            case 'create':
-                $this->reponse = new ReponsePersonna();
-                $this->reponsePersonna('create', 'personna');
-                break;
-            case 'read':
-                $this->reponse = new ReponsePersonna();
-                $this->reponsePersonna('read', 'id');
-                break;
-            case 'update':
-                $this->reponse = new ReponsePersonna();
-                $this->reponsePersonna('update', 'personna');
-                break;
-            case 'delete':
-                $this->reponse = new Reponse();
-                $this->reponseVoid('delete', 'personna');
-                break;
-            case 'getAll':
-                $this->reponse = new ReponsePersonna();
-                $this->reponsePersonna('getAll', '');
-                break;
-        }
+        match($requete->getAction()) {
+            'create', 'update' => $this->reponsePersonna(
+                $requete->getAction(),
+                'personna'
+            ),
+            'read' => $this->reponsePersonna('read', 'id'),
+            'delete' => $this->reponseVoid('delete', 'personna'),
+            'getAll' => $this->reponsePersonna('getAll', '')
+        };
         $presenter->presente($this->reponse);
 
         return $presenter;
@@ -82,6 +69,7 @@ class Personna implements UseCaseInterface
      */
     private function reponsePersonna(string $action, string $param): void
     {
+        $this->reponse = new ReponsePersonna();
         try {
             $personnas = $param !== '' ?
                 $this->repository->$action($this->requete->getParam($param)) :
@@ -102,6 +90,7 @@ class Personna implements UseCaseInterface
      */
     private function reponseVoid(string $action, string $param): void
     {
+        $this->reponse = new Reponse();
         try {
             $this->repository->delete($this->requete->getParam('personna'));
         } catch (PersonnaRepositoryException | PersonnaRequetesException $ex) {
