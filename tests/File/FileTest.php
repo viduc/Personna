@@ -123,12 +123,19 @@ class FileTest extends TestCase
      */
     final public function getAll(): void
     {
-        $personna = new PersonnaModel(['username' => 'getall']);
+        $personna1 = new PersonnaModel(['username' => 'getall1']);
+        $personna2 = new PersonnaModel(['username' => 'getall2']);
         file_put_contents(
-            $this->path . 'getall.personna',
-            json_encode($personna->jsonSerialize(), JSON_THROW_ON_ERROR)
+            $this->path . 'getall1.personna',
+            json_encode($personna1->jsonSerialize(), JSON_THROW_ON_ERROR)
         );
-        self::assertEquals('getall', $this->file->getAll()[0]->getUsername());
+        file_put_contents(
+            $this->path . 'getall2.personna',
+            json_encode($personna2->jsonSerialize(), JSON_THROW_ON_ERROR)
+        );
+        self::assertCount(2, $this->file->getAll());
+        self::assertEquals('getall1', $this->file->getAll()[0]->getUsername());
+        self::assertEquals('getall2', $this->file->getAll()[1]->getUsername());
     }
 
     /**

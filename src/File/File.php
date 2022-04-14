@@ -98,8 +98,7 @@ class File implements FileInterface
         $personnas = [];
         foreach(scandir($this->path) as $file) {
             if (str_contains($file, '.personna')) {
-                $this->chergerPersonna($file);
-                $personnas[] = $this->personna;
+                $personnas[] = $this->chargerPersonna($file);
             }
         }
 
@@ -108,10 +107,9 @@ class File implements FileInterface
 
     /**
      * @param string $file
-     * @return PersonnaModel
      * @throws PersonnaFileException
      */
-    private function chergerPersonna(string $file): void
+    private function chargerPersonna(string $file): PersonnaModel
     {
         try {
             $json = json_decode(
@@ -120,7 +118,9 @@ class File implements FileInterface
                 512,
                 JSON_THROW_ON_ERROR
             );
-            $this->personna->chargerDepuisJson($json);
+            $personna = new PersonnaModel();
+            $personna->chargerDepuisJson($json);
+            return $personna;
         // @codeCoverageIgnoreStart
         } catch (\JsonException $ex) {
             throw new PersonnaFileException(

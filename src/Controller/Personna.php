@@ -86,7 +86,6 @@ class Personna implements UseCaseInterface
             $personnas = $param !== '' ?
                 $this->repository->$action($this->requete->getParam($param)) :
                 $this->repository->$action();
-
             $personnas = !is_array($personnas) ? [$personnas] : $personnas;
             $this->reponse->setPersonnas($personnas);
         } catch (PersonnaRepositoryException | PersonnaRequetesException $ex) {
