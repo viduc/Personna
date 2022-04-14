@@ -34,10 +34,12 @@ class Folder implements FolderInterface
         ob_start();
         try {
             if (!mkdir($path, 775, false) && !is_dir($path)) {
+
+                //@@codeCoverageIgnoreStart
                 throw new PersonnaFileException(
                     "Le dossier n'a pas pu être créé",
                     105
-                );
+                );// @codeCoverageIgnoreEnd
             }
         } catch (\Exception) {
             ob_end_clean();
