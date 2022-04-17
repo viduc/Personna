@@ -75,8 +75,8 @@ class PersonnaModel
         $this->age = $options['age'] ?? 0;
         $this->lieu = $options['lieu'] ?? 'lieu';
         $this->aisanceNumerique = $options['aisanceNumerique'] ?? 0;
-        $this->expertiseDomaine = $options['aisanceNumerique'] ?? 0;
-        $this->frequenceUsage = $options['aisanceNumerique'] ?? 0;
+        $this->expertiseDomaine = $options['expertiseDomaine'] ?? 0;
+        $this->frequenceUsage = $options['frequenceUsage'] ?? 0;
         $this->metier = $options['metier'] ?? 'metier';
         $this->citation = $options['citation'] ?? 'citation';
         $this->histoire = $options['histoire'] ?? 'histoire';
